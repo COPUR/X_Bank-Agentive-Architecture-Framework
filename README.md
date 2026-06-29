@@ -38,6 +38,17 @@ The framework decouples E2E execution into 5 highly bounded, specialized agents.
 
 ---
 
+
+### 🚀 Java Spring Boot Orchestration
+The Cognitive Harness is now fully codified in Java, replacing the conceptual Python orchestrator:
+- **`CognitiveWorkflowImpl.java`**: Temporal event-loop mapping the synchronous execution of the 5 Agents.
+- **Human-in-the-Loop CAB**: Integrates `Workflow.await()` to pause for managerial Sign-offs.
+- **Spring AI Prompts**: Bounded prompts ensuring Agents cannot hallucinate beyond CBUAE compliance.
+
+### 📊 Strategic SWOT Analysis
+Please refer to the `x_bank-core/8_togaf_agile_radar...` document for the **3-Year TCO CapEx/OpEx breakdown** and the strategic Agentive SWOT Analysis (mitigating GPU hardware costs and TTFT constraints).
+
+
 ## 🏗 Enterprise Technology Stack
 This repository defines the following enterprise infrastructure:
 - **Java / Spring Boot**: The core runtime for the Cognitive Orchestration Harness.

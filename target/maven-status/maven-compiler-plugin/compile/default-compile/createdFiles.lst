@@ -11,6 +11,7 @@ com/xbank/harness/security/LogSanitizer.class
 com/xbank/harness/services/CognitiveWorkflow.class
 com/xbank/harness/services/CognitiveWorkflowImpl.class
 com/xbank/harness/Application.class
+com/xbank/harness/Demo.class
 com/xbank/harness/security/CdeVerifier.class
 com/xbank/harness/agents/tools/VectorSearchService.class
 com/xbank/harness/components/ConfluenceIngest.class
