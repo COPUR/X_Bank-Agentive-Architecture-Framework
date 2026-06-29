@@ -16,7 +16,7 @@ Container_Boundary(agent3_boundary, "Agent 3 (Compliance Gate Service)") {
     Component(circuit_breaker, "Graceful Degradation Breaker", "Resilience4j", "Falls back to deterministic rules if model inference fails or times out.")
     Component(security_filter, "Cognitive Security Filter", "Spring Security", "Validates output and trust scores before writing state back to memory.")
     Component(hardstop_mgr, "Compliance Hard-Stop Manager", "GitOps Hook Trigger", "Signals pipeline build failures and freezes target ArgoCD branches upon critical violations.")
-    Component(tra_generator, "TRA Report Generator", "fpdf2 / ReportLab Generator", "Compiles highly structured PDF Targeted Risk Analysis (TRA) logs.")
+    Component(tra_generator, "TRA Report Generator", "JasperReports / iText Generator", "Compiles highly structured PDF Targeted Risk Analysis (TRA) logs.")
     Component(intent_publisher, "Intent Publisher Component", "Temporal SDK", "Publishes final audit decisions back to orchestrator.")
 }
 

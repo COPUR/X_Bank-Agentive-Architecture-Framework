@@ -6,9 +6,9 @@ The BDAT Technology Architecture establishes the physical infrastructure boundar
 	•	app/Dockerfile containerizes our core Cognitive Orchestration Harness API, allowing it to run as a microservice pod on AWS EKS.
 	•	docker-compose.yml provides a local development manifest, spin-up configuration, and environment networking to orchestrate all 5 agent containers and our local pgvector PostgreSQL database during technical sandbox PoT evaluations.
 2. Apache Kafka (AWS MSK) Messaging Backbone
-	•	Implementation Code: app/config.py & app/services/
+	•	Implementation Code: app/SecurityConfig.java & app/services/
 	•	Mechanism:
-	•	app/config.py defines the bootstrap servers and credential mappings for our AWS MSK Kafka cluster.
+	•	app/SecurityConfig.java defines the bootstrap servers and credential mappings for our AWS MSK Kafka cluster.
 	•	Our core services publish and consume messages over distinct event-driven topics:
 	•	arch-ingestion-topic: Maintained by Agent 1 to broadcast ingested context.
 	•	lld-generation-topic: Maintained by Agent 2 to broadcast LLD designs.
@@ -21,5 +21,5 @@ The BDAT Technology Architecture establishes the physical infrastructure boundar
 	•	Semantic Vector Caching: Deployed alongside the vLLM engine, a Redis/Qdrant memory store serves as a high-speed semantic cache to mitigate TTFT bottlenecks.
 4. API Security, mTLS & DPoP Token Binding
 	•	All communication channels use Mutual TLS (mTLS) client certificates running over TLS 1.3.
-	•	app/security/cde_verifier.py acts as an active gate, enforcing that all ingress requests to the CDE contain cryptographically bound access tokens with valid DPoP signatures, preventing token hijacking.
+	•	app/security/CdeVerifier.java acts as an active gate, enforcing that all ingress requests to the CDE contain cryptographically bound access tokens with valid DPoP signatures, preventing token hijacking.
 
