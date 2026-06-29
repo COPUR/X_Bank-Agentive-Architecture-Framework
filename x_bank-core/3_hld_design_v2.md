@@ -74,6 +74,9 @@ The multi-agent orchestrator operates as a stateful, long-running workflow syste
 
 *For a detailed programmatic view of this multi-agent state execution, please refer to the mandatory [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
 
+![sequence_temporal_workflow_v2.png](sequence_temporal_workflow_v2.png)
+
+
 3.2 Workflow States and Operational Logic
 	•	State 0: [Gateway Routing & Security]: Webhook hits the Kong Agent Gateway. The Security LLM layer scans for prompt injection. The Semantic Cache is checked to bypass full execution if this is a duplicated intent.
 	•	State 1: [Jira Ingestion]: Ingestion of Jira backlog items. Agent 1 queries Confluence using Page ID references to retrieve storage formats, mapped via Model Cascades (SLM for simple parsing).

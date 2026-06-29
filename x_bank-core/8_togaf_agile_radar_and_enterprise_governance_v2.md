@@ -63,6 +63,12 @@ The framework integrates Agile Scrum ceremonies directly with the phases of the 
 	•	Process: Deploying working software increments to standard staging environments.
 	•	Agent Action: Agent 4 manages the Human-in-the-Loop workflows, pausing execution until stakeholders formally approve the logical drift. Agent 5 executes a Semantic Triangle Check.
 	•	Mandatory Board Artifacts: The workflow requires explicit review of the Intent-Driven Sequence UML (`sequence_temporal_workflow_v2.puml`) and Cognitive Circuit Breaker State Diagram (`state_deterministic_fallback_v2.puml`) before IdP CAB sign-off is permitted.
+
+![sequence_temporal_workflow_v2.png](sequence_temporal_workflow_v2.png)
+
+
+![state_deterministic_fallback_v2.png](state_deterministic_fallback_v2.png)
+
 	•	Sprint Retrospective (ADM Phase H: Architecture Change Management):
 	•	Process: Analyzing team velocity, quality, workload amplification, and technical debt.
 	•	Agent Action: Agent 5 computes Workload Amplification metrics and SRE bottleneck summaries to optimize Autonomous Platform Automation (APA). Simultaneously, our Debt Management Engine calculates code-quality debt scores to automatically insert refactoring cards into the next sprint's backlog.

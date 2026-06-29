@@ -70,6 +70,9 @@ The Container diagram decomposes the Cognitive Orchestration Harness into its co
 The Component diagram models the internal Spring Boot and pgvector components of our regulatory gate (Agent 3).
 4.1 Component Diagram
 	•	Source PUML File: c4_component.puml
+
+![c4_component.png](c4_component.png)
+
 	•	Rendered Diagram: diagrams/c4_component.svg
 4.2 Component Descriptions
 	•	Kafka Consumer: Consumes LLD schemas from the lld-generation-topic topic.
@@ -121,4 +124,7 @@ CREATE TABLE tbl_cards (
 6. Multi-Agent Temporal Sequence
 The system orchestrates intent across 5 different agents via the Temporal worker pattern. 
 *For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
+
+![sequence_temporal_workflow_v2.png](sequence_temporal_workflow_v2.png)
+
 
