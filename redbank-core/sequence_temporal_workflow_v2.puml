@@ -1,0 +1,78 @@
+@startuml sequence_temporal_workflow_v2
+!theme plain
+autonumber
+
+skinparam BoxPadding 10
+skinparam ParticipantPadding 10
+
+actor "Jira / Confluence\n(Webhook)" as jira
+box "Cognitive Orchestration Harness" #LightBlue
+    participant "Kong Agent Gateway\n(& Security LLM)" as kong
+    participant "Semantic Vector Cache\n(Redis/Qdrant)" as cache
+    participant "Temporal Orchestrator\n(+ Kafka MSK)" as temporal
+    participant "Agent 1\n(Ingestion/BIAN)" as agent1
+    participant "Agent 2\n(Topology/LLD)" as agent2
+    participant "Agent 3\n(Compliance Gate)" as agent3
+    participant "Agent 4\n(Governance/IdP)" as agent4
+    participant "Agent 5\n(Triangle Check)" as agent5
+end box
+
+database "pgvector\n(Rules/DB)" as pgvector
+participant "ArgoCD\n(GitOps)" as argocd
+
+== Ingestion & Gateway Routing ==
+jira -> kong: POST /webhook/intent (PRD payload)
+kong -> kong: Security LLM: Scan for Prompt Injection
+alt Prompt Injection Detected
+    kong --> jira: 403 Forbidden (Cognitive Block)
+else Clean Payload
+    kong -> cache: Check TTFT Cache (Vector Match)
+    alt Cache Hit (High Cosine Similarity)
+        cache --> kong: Return cached architectural intent
+        kong --> jira: 200 OK (Bypass LLM Compute)
+    else Cache Miss
+        kong -> temporal: Publish Intent Event
+    end
+end
+
+== Multi-Agent Workflow Execution ==
+temporal -> agent1: Dispatch Intent (State 1)
+agent1 -> agent1: Parse XHTML & Map BIAN Domains
+agent1 -> temporal: Return Structured Context (JSON)
+
+temporal -> agent2: Dispatch Topology Mapping (State 2)
+agent2 -> agent2: Synthesize LLD Schema
+agent2 -> temporal: Return LLD & Infrastructure Map
+
+temporal -> agent3: Dispatch Compliance Scoper (State 3)
+agent3 -> pgvector: Query Regulatory Rules (CBUAE/PCI)
+pgvector --> agent3: Return matching rules
+agent3 -> agent3: Execute LLM Inference
+alt LLM Hallucination or Timeout
+    agent3 -> agent3: Circuit Breaker triggers Deterministic Fallback
+end
+alt Compliance Violation (e.g. CDE Bypass)
+    agent3 -> temporal: Return HARD-STOP (Targeted Risk Analysis)
+    temporal --> jira: Update ticket with TRA failure
+else Compliance Passed
+    agent3 -> temporal: Return Validation OK
+end
+
+== Human-in-the-Loop & Governance ==
+temporal -> agent4: Dispatch Governance Intent (State 4)
+agent4 -> agent4: Validate RBAC (Enterprise IdP)
+agent4 -> temporal: Pause Workflow (HITL Wait State)
+note right of agent4: SRE & CISO must explicitly approve
+jira -> agent4: CAB / ARB Sign-off received
+agent4 -> temporal: Resume Workflow
+
+== Quality Audit & GitOps ==
+temporal -> agent5: Dispatch Audit Intent (State 5)
+agent5 -> agent5: Run Semantic Triangle Check
+agent5 -> temporal: Return Audit Complete (APA Metrics generated)
+
+temporal -> argocd: Sync Approved Manifests
+argocd --> temporal: Deployment Success
+temporal --> jira: Update ticket to 'Done'
+
+@enduml

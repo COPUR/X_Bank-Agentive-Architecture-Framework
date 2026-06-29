@@ -93,6 +93,10 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
 }
 
 
+2.2 Cognitive Circuit Breaker (Agent 3 State Machine)
+To ensure system stability, Agent 3 implements a strict deterministic fallback mechanism if the primary Model Cascades fail or timeout.
+*For a detailed programmatic view of this fallback logic, please refer to the mandatory [State Machine Diagram](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/state_deterministic_fallback_v2.puml).*
+
 3. Structured LLM Prompting Templates (Agent-FTE-Architect Implementation)
 The following prompting structures are designed for direct implementation within our automated SDLC code-generation microservices:
 3.1 Prompt 1: System Codex & Ingestion (Agent 1 - Squad Tier)

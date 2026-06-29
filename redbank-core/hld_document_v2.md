@@ -97,3 +97,8 @@ CREATE TABLE tbl_cards (
 
 );
 
+
+6. Multi-Agent Temporal Sequence
+The system orchestrates intent across 5 different agents via the Temporal worker pattern. 
+*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/sequence_temporal_workflow_v2.puml).*
+

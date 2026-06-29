@@ -28,3 +28,11 @@ Agent 5: Cognitive Quality Auditor
 Chapter Tier
 Performs Semantic Triangle checks on running code and tracks Workload Amplification metrics via Autonomous Platform Automation (APA).
 
+1.3 Master Architectural Artifact Index
+All system behaviors, boundaries, and fallbacks are documented in our verified PlantUML files, which serve as the definitive design boundaries:
+- **C4 System Context**: [c4_context_v2.puml](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/c4_context_v2.puml)
+- **C4 Container**: [c4_container_v2.puml](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/c4_container_v2.puml)
+- **C4 Component (Agent 3)**: [c4_component_v2.puml](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/c4_component_v2.puml)
+- **Temporal Workflow (Sequence)**: [sequence_temporal_workflow_v2.puml](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/sequence_temporal_workflow_v2.puml)
+- **Cognitive Circuit Breaker (State)**: [state_deterministic_fallback_v2.puml](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/state_deterministic_fallback_v2.puml)
+

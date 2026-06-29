@@ -1,0 +1,45 @@
+@startuml state_deterministic_fallback_v2
+!theme plain
+hide empty description
+
+[*] --> Payload_Intercepted : LLD Schema Arrives at Agent 3
+
+state Payload_Intercepted {
+  [*] --> Vector_Retrieval
+  Vector_Retrieval : Query pgvector for regulatory rules
+  Vector_Retrieval --> Model_Inference : Rules Extracted
+  
+  state Model_Inference {
+    [*] --> LLM_Evaluation
+    LLM_Evaluation : Evaluate Schema vs Rules via Llama-3-70B
+    LLM_Evaluation --> Inference_Success : Valid output parsed
+    LLM_Evaluation --> Timeout_Error : TTFT exceeds 10s SLA
+    LLM_Evaluation --> Hallucination_Error : Output format invalid
+  }
+}
+
+Model_Inference --> Deterministic_Fallback : [Timeout OR Hallucination] (Circuit Breaker OPEN)
+
+state Deterministic_Fallback {
+  [*] --> Keyword_Matching
+  Keyword_Matching : Fallback to strict regex/AST rules
+  Keyword_Matching : (No contextual reasoning)
+  Keyword_Matching --> Hard_Stop : Violation (e.g., CDE ingress without DPoP)
+  Keyword_Matching --> Approved_Fallback : Passed
+}
+
+Model_Inference --> Approved_Model : [Inference_Success] (No Violations)
+Model_Inference --> Hard_Stop : [Inference_Success] (Violations Found)
+
+Approved_Model --> [*] : Publish Validation OK to Temporal
+Approved_Fallback --> [*] : Publish Validation OK (Degraded Mode)
+Hard_Stop --> [*] : Publish TRA Alert & Halt Pipeline
+
+note right of Deterministic_Fallback
+  <b>Graceful Cognitive Degradation</b>
+  If the LLM fails, we bypass the AI
+  and rely on deterministic thresholds
+  to guarantee system stability.
+end note
+
+@enduml
