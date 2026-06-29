@@ -2,8 +2,8 @@ Detailed Level Design (LLD) Document - X_Bank Agent-Native Architecture Framewor
 Document Identifier: RB-EAF-2026-LLD Classification: RESTRICTED - ENTERPRISE ARCHITECTURE Target Audience: Lead Developers, SQA Engineers, SRE Leads Version: 1.0
 
 
-1. Low-Level API Specifications
-1.1 Account Balance Inquiry API
+## 1. Low-Level API Specifications
+### 1.1 Account Balance Inquiry API
 	•	Protocol: REST over TLS 1.3 / mTLS
 	•	Path: GET /api/v1/accounts/{accountId}/balance
 	•	Headers:
@@ -16,6 +16,7 @@ X-Client-Cert-SHA256: <mTLS-cert-hash>
 
 	•	Response Payload (200 OK):
 
+```json
 {
 
   "account_id": "1b2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
@@ -31,11 +32,13 @@ X-Client-Cert-SHA256: <mTLS-cert-hash>
   "timestamp": "2026-06-28T07:03:04Z"
 
 }
-1.2 Card Authorization Verification API
+```
+### 1.2 Card Authorization Verification API
 	•	Protocol: REST / FAPI2 Compliance
 	•	Path: POST /api/v1/cards/authorize
 	•	Payload:
 
+```json
 {
 
   "card_token": "a6c3827d8fbe84029cbb863f84dfef2a87df84fa38de2847ff847da938e284ef",
@@ -49,9 +52,11 @@ X-Client-Cert-SHA256: <mTLS-cert-hash>
   "transaction_id": "TX-40192"
 
 }
+```
 
 	•	Response Payload (200 OK):
 
+```json
 {
 
   "transaction_id": "TX-40192",
@@ -63,6 +68,7 @@ X-Client-Cert-SHA256: <mTLS-cert-hash>
   "timestamp": "2026-06-28T07:03:04Z"
 
 }
+```
 
 
 2. Distributed Transaction State Machine (Temporal Orchestration)
@@ -75,7 +81,8 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
                      ▼
 
              [COMPENSATING_ROLLBACK] ──► [REVERSED]
-2.1 Compensating Rollback Event Schema
+### 2.1 Compensating Rollback Event Schema
+```json
 {
   "workflow_id": "temporal-uuid-901234",
   "transaction_type": "CARD_RESERVATION_COMPENSATION",
@@ -88,6 +95,7 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
   "reason": "CARD_AUTHORIZATION_FAILED"
 
 }
+```
 
 
 2.2 Cognitive Circuit Breaker (Agent 3 State Machine)

@@ -2,12 +2,12 @@ High-Level Design (HLD) Document - X_Bank Agent-Native Architecture Framework
 Document Identifier: RB-EAF-2026-HLD Classification: RESTRICTED - ENTERPRISE ARCHITECTURE Target Audience: CAB/ARB Board, Solutions Architects, DevSecOps Leads Version: 1.0
 
 
-1. Executive Summary & Core Philosophy
+## 1. Executive Summary & Core Philosophy
 **Mission**: Automate E2E SDLC design, regulatory review, and code reconciliation under CBUAE, PCI-DSS, and GDPR standards.
-1.1 The Harness Engineering Principle: Agent = Model + Harness
+### 1.1 The Harness Engineering Principle
 **Agent = Model + Harness + Bounded Specialization**
 LLMs act as stateless compute, secured by Kong, Kafka, and PostgreSQL.
-1.2 The LFI-Sandwich Architecture Tiers
+### 1.2 The LFI-Sandwich Architecture Tiers
 	•	The Upper Layer: Business and product requirements established in Confluence and Jira.
 	•	The Middle Layer: Logical design and low-level specifications aligned with the BIAN framework.
 	•	The Lower Layer: Comprehensive post-processing compliance validation, automated remediation, and code auditing.
@@ -24,7 +24,7 @@ LLMs act as stateless compute, secured by Kong, Kafka, and PostgreSQL.
 | **Master Storage** | Private RDS Subnet | PostgreSQL (`pgvector`), Redis | Caches semantic similarities to bypass LLM inference (TTFT mitigation). |
 
 
-2. System Context (C4 Level 1)
+## 2. System Context (C4 Level 1)
 The System Context diagram describes how the Cognitive Orchestration Harness interacts with users (Architects, CISO, SREs) and external enterprise systems.
 2.1 Context Diagram
 	•	Source PUML File: c4_context.puml
@@ -49,7 +49,7 @@ The System Context diagram describes how the Cognitive Orchestration Harness int
 [DevOps / SRE] ◄────────────────────────────────────────── [GitHub / ArgoCD GitOps]
 
 
-3. Container Architecture (C4 Level 2)
+## 3. Container Architecture (C4 Level 2)
 The Container diagram decomposes the Cognitive Orchestration Harness into its core container modules, event buses, databases, and localized LLM compute engines.
 3.1 Container Diagram
 	•	Source PUML File: c4_container.puml
@@ -66,7 +66,7 @@ The Container diagram decomposes the Cognitive Orchestration Harness into its co
 	•	Sovereign LLM (vLLM): Private, localized LLaMA-3-70B compute engine running on AWS EKS GPU nodes inside our trust boundary.
 
 
-4. Component Architecture - Agent 3 (C4 Level 3)
+## 4. Component Architecture - Agent 3
 The Component diagram models the internal Spring Boot and pgvector components of our regulatory gate (Agent 3).
 4.1 Component Diagram
 	•	Source PUML File: c4_component.puml
@@ -83,6 +83,7 @@ The Component diagram models the internal Spring Boot and pgvector components of
 
 5. Master Data Tier Schemas (PostgreSQL)
 5.1 Account Service Schema
+```sql
 CREATE TABLE tbl_accounts (
 
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -98,7 +99,9 @@ CREATE TABLE tbl_accounts (
     status VARCHAR(10) NOT NULL CHECK (status IN ('ACTIVE', 'SUSPENDED', 'CLOSED'))
 
 );
+```
 5.2 Card Service Schema (PCI-DSS v4 Isolated CDE)
+```sql
 CREATE TABLE tbl_cards (
 
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -112,6 +115,7 @@ CREATE TABLE tbl_cards (
     credit_limit NUMERIC(15,2) NOT NULL DEFAULT 0.00
 
 );
+```
 
 
 6. Multi-Agent Temporal Sequence
