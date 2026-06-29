@@ -33,6 +33,8 @@ Agent-based AI systems execute probabilistically, making static autoscaling tool
 2.  **Semantic Caching:** Deploy vector-based caches that understand the contextual meaning of prompts. Returning cached answers for semantically similar questions dramatically cuts hardware costs and model fatigue.
 3.  **Cognitive Security & Streaming DLP:** Traditional WAFs are blind to Prompt Injection. Architecture requires a dedicated "Security LLM" layer to inspect requests *before* they hit the primary models.
 4.  **Graceful Cognitive Degradation (Circuit Breakers):** Instead of throwing fatal errors during outages, systems must gracefully fall back to locally quantized models or deterministic, rule-based systems.
+    *   **Mitigating LLM Hallucinations**: In the X_Bank architecture, Hallucinations are categorized as a systemic Threat. To neutralize this, **Agent 3 (Compliance Gate)** acts as a strict Cognitive Circuit Breaker. 
+    *   If the primary LLM hallucinates an invalid API payload or an unauthenticated ingress path, Agent 3 immediately intercepts it. It queries a deterministic `pgvector` rules database containing strict regulatory logic (CBUAE / PCI-DSS). If a hallucination is detected, the workflow undergoes *Graceful Degradation*, abandoning probabilistic AI entirely and falling back to a hardcoded Regex/AST state machine to force a pipeline Hard-Stop.
 5.  **Cognitive Orchestration & Human-in-the-Loop:** Ensure full traceability as agents communicate. Enforce mandatory human approval loops for sensitive, "gray area" decisions.
 
 ---
