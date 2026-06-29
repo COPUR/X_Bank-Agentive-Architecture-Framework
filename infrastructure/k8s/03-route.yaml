@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: xbank-harness-route
+  namespace: xbank-agentive
+spec:
+  host: agentive.xbank.local
+  to:
+    kind: Service
+    name: xbank-harness-svc
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

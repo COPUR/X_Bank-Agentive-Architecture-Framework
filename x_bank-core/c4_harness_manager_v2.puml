@@ -1,0 +1,33 @@
+@startuml c4_harness_manager_v2
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram for Managed Harness
+
+Container_Boundary(harness, "AgentHarness Core") {
+    Component(config_mgr, "ConfigurationManager", "Spring Component", "Dynamically loads AgentConfiguration, System Prompts, and enables ToolDefinitions.")
+    Component(memory_mgr, "PersistentMemoryManager", "Spring Component", "Loads and persists cross-session context to local file system.")
+    Component(agent_harness, "AgentHarness", "Control Layer", "Drives the iterative loop using dynamic sequencing over the LlmProvider.")
+    Component(hooks, "ObservabilityLifecycleHooks", "Spring Component", "Intercepts beforeToolCall and afterToolCall to track telemetry.")
+    Component(llm_provider, "RestLlmProvider", "HTTP Client", "Provider-agnostic HTTP wrapper communicating with standard OpenAI-compatible REST schemas.")
+    
+    Rel(agent_harness, memory_mgr, "Loads/Saves Context")
+    Rel(agent_harness, config_mgr, "Fetches active configuration")
+    Rel(agent_harness, llm_provider, "Invokes LLM with Tools")
+    Rel(agent_harness, hooks, "Triggers telemetry events")
+}
+
+Container_Boundary(tools, "Dynamic Tool Domains") {
+    Component(ingest_tool, "Ingestion Tools", "Jira/Confluence extractors")
+    Component(topo_tool, "Topology Tools", "VectorSearchService, AlfabetClient")
+    Component(comp_tool, "Compliance Tools", "pgvector rule evaluators")
+    Component(gov_tool, "Governance Tools", "JiraConnector, Slide compilers")
+    Component(qual_tool, "Quality Tools", "Semantic Triangle validators")
+}
+
+Component(workflow, "OpenFinanceWorkflowImpl", "Temporal Workflow", "Iterates over structured task DTOs with isolated states.")
+
+Rel(workflow, agent_harness, "Executes Task Iteration", "AgentConfiguration, TaskDescription")
+Rel(agent_harness, tools, "Dynamically calls specific tools as required by the model")
+@enduml

@@ -1,22 +1,22 @@
 Business Architecture & Scrum Execution - X_Bank V2 Directory Mapping
 Within the decoupled Business Architecture of X_Bank, the agile planning lifecycle, BIAN domain alignments, and Scrum ceremonies map directly to the codebase components of our x_bank-agent-native-architecture-framework-v2 structure:
 1. Requirements Ingestion & Mapping (The Scrum Backlog)
-	•	Confluence Space Templates & PRDs: Handled by app/components/ConfluenceIngest.java. It calls the Confluence API (via app/agents/tools/ConfluenceConnector.java) to fetch XHTML storage formats.
-	•	Blueprint Creator App Metadata: Read by app/agents/Agent1Ingestion.java. It parses custom field tables in the PRD, converting structural metadata into a machine-readable JSON schema.
-	•	Comala Workflows Approvals: Listened to by app/agents/tools/JiraConnector.java. It captures transition webhook triggers indicating a page has moved to Approved with appropriate signatures.
-	•	Jira Backlog Generation: Handled by app/agents/tools/JiraConnector.java. It programmatically generates stories, epics, and tasks based on Confluence tables, putting them directly into the engineering backlog.
-	•	BIAN Domain Alignment: Executed by app/agents/Agent1Ingestion.java. It maps logical requirements to standard BIAN Consumer Account and Card Authorization boundaries.
+	•	Confluence Space Templates & PRDs: Handled by src/main/java/com/xbank/harness/ingestion/adapter/out/ConfluenceAdapter.java.
+	•	Blueprint Creator App Metadata: Read by src/main/java/com/xbank/harness/ingestion/application/service/IngestionService.java.
+	•	Comala Workflows Approvals: Listened to by src/main/java/com/xbank/harness/governance/adapter/in/JiraWebhookAdapter.java.
+	•	Jira Backlog Generation: Handled by src/main/java/com/xbank/harness/ingestion/adapter/out/JiraAdapter.java.
+	•	BIAN Domain Alignment: Executed by src/main/java/com/xbank/harness/ingestion/application/service/IngestionService.java.
 2. Scrum Ceremonies in the SDLC & ADM Cycle
 	•	Sprint Planning (ADM Phase A/B/C/D):
-	•	Implementation Code: app/agents/Agent1Ingestion.java.
-	•	Mechanism: Agent 1 checks for previous capability reuse (via app/agents/tools/ConfluenceConnector.java querying our central portfolio) before sprint commitments to prevent redundant engineering.
+	•	Implementation Code: src/main/java/com/xbank/harness/ingestion/application/service/IngestionService.java.
+	•	Mechanism: The Ingestion Domain checks for previous capability reuse before sprint commitments.
 	•	Daily Standup (ADM Phase G - Governance):
-	•	Implementation Code: app/agents/Agent3Scoper.java.
-	•	Mechanism: Scans active developer commits in the CI/CD pipeline. Any unauthenticated route to the CDE triggers a hard-stop via app/evaluation/QualityGates.java, instantly notifying developers of a compliance breach.
+	•	Implementation Code: src/main/java/com/xbank/harness/compliance/application/service/ComplianceService.java.
+	•	Mechanism: Scans active developer commits in the CI/CD pipeline. Any unauthenticated route to the CDE triggers a hard-stop, instantly notifying developers.
 	•	Sprint Review & Demo (ADM Phase E/F - Solutions & Migration):
-	•	Implementation Code: app/evaluation/TriangleValidator.java.
-	•	Mechanism: Evaluates whether the physical running code aligns perfectly with our Confluence specifications (Semantic Triangle Check) before demonstrating it to business verticals.
+	•	Implementation Code: src/main/java/com/xbank/harness/quality/application/service/QualityService.java.
+	•	Mechanism: Evaluates whether the physical running code aligns perfectly with our Confluence specifications (Semantic Triangle Check).
 	•	Sprint Retrospective (ADM Phase H - Change Management):
-	•	Implementation Code: app/agents/Agent5Dora.java & app/observability/DebtCalculator.java.
-	•	Mechanism: Agent 5 computes anonymized DORA metrics and engineering bottlenecks (wait times) while the DebtCalculator.java compiles Technical Debt Indexes (TDI) to feed refactoring cards into the next sprint backlog.
+	•	Implementation Code: src/main/java/com/xbank/harness/quality/application/service/QualityService.java.
+	•	Mechanism: The Quality Domain computes anonymized DORA metrics and engineering bottlenecks (wait times).
 

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-ha
+  namespace: xbank-agentive
+spec:
+  serviceName: "postgres-headless"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - postgres
+            topologyKey: "topology.kubernetes.io/zone"
+      containers:
+      - name: postgres
+        image: ankane/pgvector:latest
+        env:
+        - name: POSTGRES_USER
+          value: "xbank_admin"
+        - name: POSTGRES_PASSWORD
+          value: "secure_ha_password"
+        - name: POSTGRES_DB
+          value: "memory_banks"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: pg-data
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: pg-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 50Gi

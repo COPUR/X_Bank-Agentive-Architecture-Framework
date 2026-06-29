@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: xbank-cognitive-harness
+    
+  # Active-Active PostgreSQL HA Setup
+  datasource:
+    url: jdbc:postgresql://postgres-headless.xbank-agentive.svc.cluster.local:5432/memory_banks
+    username: xbank_admin
+    password: secure_ha_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Active-Active Redis Cluster Setup
+  data:
+    redis:
+      cluster:
+        nodes:
+          - redis-headless.xbank-agentive.svc.cluster.local:6379
+      password: "" # Omitted for this mock setup
+      timeout: 2000
+
+  kafka:
+    bootstrap-servers: localhost:9092 # Use MSK endpoint in prod
+    consumer:
+      group-id: harness-group

@@ -1,0 +1,39 @@
+@startuml deployment_managed_harness_v2
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Deployment Diagram for Managed Agent Harness (Kubernetes)
+
+Deployment_Node(k8s, "EKS Cluster", "Kubernetes") {
+    Deployment_Node(app_ns, "Namespace: agent-harness") {
+        Deployment_Node(pod, "Agent Harness Pod", "Spring Boot / Java 26") {
+            Container(app, "Managed Harness App", "Java", "Orchestrates tasks via OpenFinanceWorkflowImpl and AgentHarness")
+        }
+        
+        Deployment_Node(pvc, "Persistent Volume Claim") {
+            Container(memory, "Agent Memory Directory", "File System", "Stores cross-session context data via PersistentMemoryManager")
+        }
+    }
+    
+    Deployment_Node(temporal_ns, "Namespace: temporal") {
+         Container(temporal, "Temporal Server", "Go", "Maintains workflow state and async task queues")
+    }
+}
+
+Deployment_Node(llm_node, "LLM Compute Cluster", "vLLM / Inference") {
+    Container(llm_api, "OpenAI-Compatible API", "REST", "Stateless Model inference endpoint")
+}
+
+Deployment_Node(enterprise, "Enterprise Systems", "Internal Network") {
+    Container(cmdb, "Alfabet CMDB", "GraphQL", "Enterprise Architecture Repository")
+    Container(jira, "Jira", "REST", "Issue Tracking and CAB Approvals")
+}
+
+Rel(app, memory, "Reads/Writes context (sessionId.txt)", "Filesystem Mount")
+Rel(app, temporal, "Registers Workflows/Activities", "gRPC")
+Rel(app, llm_api, "Invokes via RestLlmProvider", "HTTPS")
+Rel(app, cmdb, "Queries topology (Topology Tools)", "HTTPS")
+Rel(app, jira, "Creates tickets (Governance Tools)", "HTTPS")
+
+@enduml

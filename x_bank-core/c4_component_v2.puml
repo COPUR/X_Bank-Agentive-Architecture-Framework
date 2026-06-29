@@ -3,15 +3,16 @@
 
 LAYOUT_WITH_LEGEND()
 
-title Component Diagram - Domain Agent 3 (Compliance Gate)
+title Component Diagram - Compliance Domain (Agent 3)
 
-Container(temporal_kafka, "Multi-Agent Orchestrator", "Temporal + Kafka (MSK)", "Publishes intent-driven workflows and state changes.")
+Container(orchestration_domain, "Orchestration Domain", "Temporal + Kafka (MSK)", "Publishes intent-driven workflows and state changes.")
 Container(model_cascades, "Stateless Compute Cascades", "vLLM / SLM + LLaMA", "Mixture of Experts: Fast SLMs for PII regex, LLaMA-3-70B for complex rules.")
 ContainerDb(memory_banks, "Persistent Memory Banks", "PostgreSQL (pgvector)", "Hosts active legal and regulatory texts with strict trust scoring and write filters.")
 
-Container_Boundary(agent3_boundary, "Agent 3 (Compliance Gate Service)") {
-    Component(workflow_worker, "Temporal Workflow Worker", "Temporal SDK", "Listens to orchestration intents for incoming design schemas.")
-    Component(vector_scanner, "Vector Rule Scanner Component", "Spring AI", "Performs semantic cosine-similarity searches on local memory banks.")
+Container_Boundary(compliance_domain, "Compliance Domain Context") {
+    Component(compliance_use_case, "ComplianceUseCase (Port In)", "Java Interface", "Defines the core inbound capabilities.")
+    Component(compliance_service, "ComplianceService (Application)", "Spring Service", "Coordinates compliance checks against PCI-DSS v4, GDPR, and CBUAE.")
+    Component(workflow_adapter, "Temporal Adapter (Adapter In)", "Temporal SDK", "Listens to orchestration intents for incoming design schemas.")
     Component(validator, "Regulatory Validator Core", "Spring Boot Service", "Coordinates compliance checks against PCI-DSS v4, GDPR, and CBUAE.")
     Component(circuit_breaker, "Graceful Degradation Breaker", "Resilience4j", "Falls back to deterministic rules if model inference fails or times out.")
     Component(security_filter, "Cognitive Security Filter", "Spring Security", "Validates output and trust scores before writing state back to memory.")

@@ -7,14 +7,14 @@ The BDAT Application Architecture manages our low-level API endpoints, the 5 mul
 	•	GET /api/v1/accounts/{accountId}/balance (for account balance queries over mTLS).
 	•	POST /api/v1/cards/authorize (for secure, token-based card authorizations inside the isolated CDE).
 	•	app/Entities.java defines the Jackson JSON schemas representing input and output payloads (e.g., DPoP signature models, Cert-hash validations, and JSON schemas).
-2. The 5 Multi-Agent Container Services
-Our five specialized agent personas correspond to microservice container definitions running on AWS EKS:
+2. The Dynamic Tool Domains (Managed Harness Architecture)
+Our five specialized agent personas have been refactored into distinct Domain-Driven Design (DDD) bounded contexts, acting as Toolsets for the dynamic `AgentHarness`:
 
-	•	Agent 1 (Ingestion & Context Collector): Implemented in app/agents/Agent1Ingestion.java. Polls Jira and processes Confluence XHTML.
-	•	Agent 2 (Infrastructure & DB Topology Mapper): Implemented in app/agents/Agent2Topographer.java. Queries CMDB GraphQL and synthesizes low-level design schemas.
-	•	Agent 3 (Compliance Scoper Gate): Implemented in app/agents/Agent3Scoper.java. Intercepts designs, audits them against pgvector rules, and triggers remediations or hard-stops.
-	•	Agent 4 (Governance Facilitator): Implemented in app/agents/Agent4Governor.java. Connects to Enterprise IdP groups and compiles CAB/ARB board slides.
-	•	Agent 5 (SWE Chapter Auditor): Implemented in app/agents/Agent5Dora.java. Performs Semantic Triangle audits and calculates anonymized DORA metrics.
+	•	Ingestion Domain Context: Implemented in src/main/java/com/xbank/harness/ingestion/. Tools to poll Jira and process Confluence XHTML into structured requirements.
+	•	Topology Domain Context: Implemented in src/main/java/com/xbank/harness/topology/. Tools like `VectorSearchService` and CMDB integrators to synthesize low-level design schemas.
+	•	Compliance Domain Context: Implemented in src/main/java/com/xbank/harness/compliance/. Tools to intercept designs, audit against pgvector rules, and trigger remediations or hard-stops.
+	•	Governance Domain Context: Implemented in src/main/java/com/xbank/harness/governance/. Tools to connect to Enterprise IdP groups and compile CAB/ARB board slides (`JiraConnector`).
+	•	Quality Domain Context: Implemented in src/main/java/com/xbank/harness/quality/. Tools to perform Semantic Triangle audits and calculate anonymized DORA metrics.
 3. The Semantic Triangle Code Reconciliation Check
 	•	Implementation Code: app/evaluation/TriangleValidator.java & app/evaluation/QualityGates.java
 	•	Mechanism:

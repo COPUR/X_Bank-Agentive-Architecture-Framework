@@ -21,7 +21,7 @@ LLMs act as stateless compute, secured by Kong, Kafka, and PostgreSQL.
 | **Ingestion Edge** | DMZ (Public facing) | Kong Gateway, Security LLM | Validates JWTs, intercepts Prompt Injections via Streaming DLP. |
 | **Orchestration Core** | Private VPC | Temporal Enterprise, AWS MSK | Maintains distributed transaction state and async worker events. |
 | **Secure Compute** | EKS GPU Nodes | vLLM (LLaMA-3), gVisor/WasmEdge | Executes strict, sandboxed LLM generations isolated from internet. |
-| **Master Storage** | Private RDS Subnet | PostgreSQL (`pgvector`), Redis | Caches semantic similarities to bypass LLM inference (TTFT mitigation). |
+| **Distributed Data & Cache** | Active-Active StatefulSets | HA PostgreSQL (`pgvector`), HA Redis | Caches semantic similarities to bypass LLM inference (TTFT mitigation). Clustered for active-active multi-zone redundancy. |
 
 
 ## 2. System Context (C4 Level 1)
@@ -30,7 +30,7 @@ The System Context diagram describes how the Cognitive Orchestration Harness int
 	•	Source PUML File: c4_context.puml
 	•	Rendered Diagram: diagrams/c4_context.svg
 
-![C4 Context Diagram](c4_context.png)
+![C4 Context Diagram](c4_context_v2.svg)
 
 [Enterprise Architect] ────► [Confluence (Approved PRDs)] ────► [Jira Backlog] ───► [Jama Traceability]
 
@@ -55,13 +55,12 @@ The Container diagram decomposes the Cognitive Orchestration Harness into its co
 	•	Source PUML File: c4_container.puml
 	•	Rendered Diagram: diagrams/c4_container.svg
 
-![C4 Container Diagram](c4_container.png)
+![C4 Container Diagram](c4_container_v2.svg)
 3.2 Containers Description
-	•	Agent 1 (Ingestion Service): Java/Spring Boot container that polls Jira webhooks, pulls Confluence XHTML formats, and aligns logical features to BIAN service domains.
-	•	Agent 2 (Topology Mapper): Java/Spring Boot container that queries CMDB GraphQL APIs to map live network, database, and application topologies.
-	•	Agent 3 (Compliance Scoper Gate): The regulatory gate container. Performs semantic rule matching over pgvector and localized LLaMA reasoning models.
-	•	Agent 4 (Governance Facilitator): Manages RBAC-driven voting, sign-offs, notifications, and slides compilation.
-	•	Agent 5 (SWE Chapter SRE): Runs Semantic Triangle checks and tracks anonymized DORA metrics.
+	•	Agent Harness Core (Managed Harness): A generic orchestration runtime (`AgentHarness.java`) that drives autonomous execution via dynamic sequencing.
+	•	Memory & Configuration Management: Cross-session `PersistentMemoryManager` and API-level `ConfigurationManager` to hot-swap logic.
+	•	Tool Domains (Ingestion, Topology, Compliance, Governance, Quality): Formerly rigid agents, these are now dynamically callable toolsets (e.g., Jira polling, CMDB querying, `pgvector` rule evaluation).
+	•	RestLlmProvider: A lightweight, provider-agnostic HTTP client integrating with local vLLM or remote models.
 	•	Apache Kafka (AWS MSK): The decoupled messaging backbone routing event streams.
 	•	Sovereign LLM (vLLM): Private, localized LLaMA-3-70B compute engine running on AWS EKS GPU nodes inside our trust boundary.
 
@@ -71,7 +70,7 @@ The Component diagram models the internal Spring Boot and pgvector components of
 4.1 Component Diagram
 	•	Source PUML File: c4_component.puml
 
-![c4_component.png](c4_component.png)
+![C4 Component Diagram](c4_component_v2.svg)
 
 	•	Rendered Diagram: diagrams/c4_component.svg
 4.2 Component Descriptions
@@ -121,10 +120,8 @@ CREATE TABLE tbl_cards (
 ```
 
 
-6. Multi-Agent Temporal Sequence
-The system orchestrates intent across 5 different agents via the Temporal worker pattern. 
-*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
+6. Dynamic Ralph Workflow Sequence
+The system orchestrates intent via the Temporal worker pattern, adhering to the Ralph Architecture's iterative loop with isolated state. 
+*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
 
-![sequence_temporal_workflow_v2.png](sequence_temporal_workflow_v2.png)
-
-
+![Sequence Diagram](sequence_temporal_workflow_v2.svg)

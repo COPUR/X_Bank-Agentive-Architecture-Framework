@@ -12,8 +12,22 @@ Welcome to the **X_Bank Agent-Native Architecture Framework**, a production-grad
 ---
 
 ## 🏛 The Core Paradigm: Agent = Model + Harness
+
 At X_Bank, we do not deploy raw Large Language Models (LLMs) into production. Instead, we adhere to the **LFI-Sandwich Architecture**, wrapping stateless LLM compute inside a highly secure and deterministic **Cognitive Orchestration Harness**. 
-The equation is simple: **`Agent = Model + Harness + Bounded Specialization`**
+
+### The Three Layers of Agent Engineering
+*   **Prompt Engineering**: This layer establishes the agent's identity and persona. It functions as the foundational instruction set that tells the agent who they are and how they should behave. 
+*   **Context Engineering**: This layer manages memory and information efficiency. It utilizes techniques such as RAG (Retrieval-Augmented Generation), tool calling, and MCP to load relevant data and manage the context window effectively. 
+*   **Harness Engineering**: This is an orchestration layer that moves beyond simple input/output. It creates a controlled environment for the agent, implementing strict rules, iterative loops, and step-by-step task management to ensure complex, long-duration projects are completed accurately. 
+
+### Harnessing Layer Deep Dive: The Ralph Architecture & Managed Harness
+This framework is built upon the primary example of successful harness engineering known as **The Ralph Architecture** and deployed using a **Managed Harness** pattern:
+*   **Structured Requirements**: The process begins by generating a comprehensive product requirement document, which the `RequirementOrchestratorActivities` converts into structured JSON tasks.
+*   **Iterative Looping**: Instead of a single-shot approach, the system enters a loop where it selects, executes, tests, and documents only one specific task at a time.
+*   **Isolated State Management**: Each iteration provides the agent with a fresh, clean set of both prompts and context, preventing memory degradation.
+*   **Managed Harness (Configuration-Driven)**: Instead of rigid logic, agents are dynamically configured via API payloads (`AgentConfiguration`). The Harness handles generic tool execution, cross-session memory (`PersistentMemoryManager`), and provider agnosticism (`RestLlmProvider`).
+
+The equation is simple: **`Agent = Model + Managed Harness + Dynamic Tools`**
 
 ![C4 Context Diagram](x_bank-core/c4_context.png)
 
@@ -25,25 +39,24 @@ This ensures that the AI cannot hallucinate outside of strict regulatory boundar
 
 ---
 
-## 🤖 The 5 Agent Personas
-The framework decouples E2E execution into 5 highly bounded, specialized agents. Each agent handles a specific tier of the architectural lifecycle, orchestrated via **Temporal**:
+## 🤖 The Dynamic Tool Domains
+Previously, the E2E execution was decoupled into 5 rigid sequential agents. Under the new Managed Harness pattern, these are now **Dynamic Tool Domains**. The central `AgentHarness` autonomously selects tools from these domains based on the current isolated task:
 
-![C4 Container Diagram](x_bank-core/c4_container.png)
+![C4 Harness Manager Diagram](x_bank-core/c4_harness_manager_v2.png)
 
-1. **Agent 1 (Ingestion / Squad Tier)**: Polls Jira and Confluence Webhooks, mapping product requirements into structured BIAN service domain boundaries.
-2. **Agent 2 (Topology / Squad Tier)**: Queries live CMDB GraphQL APIs to map physical infrastructure and generate Low-Level Design (LLD) schemas.
-3. **Agent 3 (Compliance Gate / Guild Tier)**: Intercepts generated LLDs, performing RAG against `pgvector` regulatory rules. It acts as a **Cognitive Circuit Breaker**, triggering hard-stops if violations (e.g., unauthenticated CDE ingress) are detected.
-4. **Agent 4 (Governance / Tribe Tier)**: Manages Enterprise IdP Role-Based Access Control (RBAC), facilitating mandatory Human-in-the-Loop (HITL) CAB/ARB board approvals.
-5. **Agent 5 (Quality & DORA / Chapter Tier)**: Analyzes source code to ensure it matches the generated logical diagrams via **Semantic Triangle Checks**, tracking Workload Amplification and automated Technical Debt Index (TDI) scores.
+1. **Ingestion Tools**: Parses Jira/Confluence webhooks to extract structured BIAN boundaries.
+2. **Topology Tools (`VectorSearchService`, `AlfabetClient`)**: Queries live CMDB APIs and vector databases to synthesize low-level designs.
+3. **Compliance Tools**: Intercepts designs, auditing against `pgvector` rules. Acts as a Cognitive Circuit Breaker.
+4. **Governance Tools (`JiraConnector`)**: Manages RBAC and creates tickets for Human-in-the-Loop (HITL) CAB approvals.
+5. **Quality Tools**: Calculates DORA metrics and tracks Workload Amplification via Semantic Triangle checks.
 
 ---
 
-
 ### 🚀 Java Spring Boot Orchestration
-The Cognitive Harness is now fully codified in Java, replacing the conceptual Python orchestrator:
-- **`CognitiveWorkflowImpl.java`**: Temporal event-loop mapping the synchronous execution of the 5 Agents.
-- **Human-in-the-Loop CAB**: Integrates `Workflow.await()` to pause for managerial Sign-offs.
-- **Spring AI Prompts**: Bounded prompts ensuring Agents cannot hallucinate beyond CBUAE compliance.
+The Cognitive Harness is now fully codified in Java, utilizing dynamic sequencing:
+- **`OpenFinanceWorkflowImpl.java`**: Temporal event-loop driving the iterative Ralph task execution.
+- **`AgentHarness.java`**: The core control layer executing dynamic tool-calling via `RestLlmProvider`.
+- **`ObservabilityLifecycleHooks.java`**: Injects `TraceLogger` and `TokenTracker` around every tool execution.
 
 ### 📊 Strategic SWOT Analysis
 Please refer to the `x_bank-core/8_togaf_agile_radar...` document for the **3-Year TCO CapEx/OpEx breakdown** and the strategic Agentive SWOT Analysis (mitigating GPU hardware costs and TTFT constraints).
@@ -51,10 +64,11 @@ Please refer to the `x_bank-core/8_togaf_agile_radar...` document for the **3-Ye
 
 ## 🏗 Enterprise Technology Stack
 This repository defines the following enterprise infrastructure:
-- **Java / Spring Boot**: The core runtime for the Cognitive Orchestration Harness.
+- **Java / Spring Boot**: The core runtime for the Cognitive Orchestration Harness, organized into a **Hexagonal (Ports & Adapters)** Domain-Driven Design.
 - **Kong Agent Gateway**: The ingress routing layer, embedded with a **Security LLM** to block prompt injections before they reach the orchestration layer.
 - **Temporal & Kafka (MSK)**: The stateful multi-agent workflow engine orchestrating deterministic event loops between the agents.
-- **Redis / Qdrant (Semantic Vector Cache)**: A high-speed cache that maps exact topological intent to bypass costly LLM inference, mitigating Time-To-First-Token (TTFT) latency.
+- **Distributed Cache & Data**: An active-active clustered `Redis` for semantic vector caching and a replicated High-Availability `pgvector` PostgreSQL instance for state retention.
+- **Kubernetes & OpenShift**: Workloads are deployed with strict `podAntiAffinity` for active-active redundancy and rolling updates.
 - **gVisor / WasmEdge**: The WebAssembly (WASM) execution environment providing strict memory sandboxing for the agents.
 
 ---
@@ -64,44 +78,20 @@ This repository models the standard Maven/Spring Boot project layout of our auto
 
 ```text
 x_bank-agent-native-architecture-framework-v2/
-├── app/
-│   ├── Application.java                    # Entrypoint for the Cognitive Orchestration Harness API
-│   ├── SecurityConfig.java                 # OIDC/IdP configurations, Kafka brokers
-│   ├── Entities.java                       # Jackson JSON schemas and Hibernate JPA entities
-│   ├── Dockerfile                          # EKS container definition (gVisor/WasmEdge)
-│   ├── build.wasm                          # WebAssembly build target
-│   ├── components/                         # Ingestion & Context Collectors
-│   │   ├── ConfluenceIngest.java 
-│   │   └── CmdbTopographer.java 
-│   ├── services/                           # Core Business Logic
-│   │   ├── TemporalOrchestrator.java       # Distributed Temporal workflow engine
-│   │   ├── RulesEngine.java                # Core TOGAF-aligned rule validator
-│   │   └── SlideCompiler.java              # Automated Google Slides layout compiler
-│   ├── prompts/                            # Versioned Expert Prompt Templates
-│   │   ├── Templates.java                  # Structured prompts for Agents 1-5
-│   │   └── Registry.java 
-│   ├── agents/                             # Multi-Agent Intel Tiers
-│   │   ├── Agent1Ingestion.java 
-│   │   ├── Agent2Topographer.java 
-│   │   ├── Agent3Scoper.java 
-│   │   ├── Agent4Governor.java 
-│   │   ├── Agent5Dora.java 
-│   │   └── tools/                          # Connector Plugins
-│   │       ├── VectorSearchService.java    # pgvector semantic rule queries
-│   │       ├── JiraConnector.java 
-│   │       ├── ConfluenceConnector.java 
-│   │       └── AlfabetClient.java 
-│   ├── security/                           # Three-Layer Protection Guardrails
-│   │   ├── PiiMaskerFilter.java            # Input mask for customer IBANs & IDs
-│   │   ├── LogSanitizer.java               # Runtime filter for diagnostic logs
-│   │   └── CdeVerifier.java                # Enforces FAPI2 check boundaries
-│   ├── evaluation/                         # Spec Reconciliation & Quality Gates
-│   │   ├── TriangleValidator.java          # Semantic Triangle Code Reconciliation Check
-│   │   └── QualityGates.java               # CI/CD deployment blockers
-│   └── observability/                      # Phase-Level Tracing & telemetry
-│       ├── TraceLogger.java 
-│       ├── DebtCalculator.java 
-│       └── TokenTracker.java 
+├── src/main/java/com/xbank/harness/
+│   ├── ingestion/                          # Ingestion Domain Context (Agent 1)
+│   ├── topology/                           # Topology Domain Context (Agent 2)
+│   ├── compliance/                         # Compliance Domain Context (Agent 3)
+│   ├── governance/                         # Governance Domain Context (Agent 4)
+│   ├── quality/                            # Quality Domain Context (Agent 5)
+│   ├── orchestration/                      # Stateful Temporal Workflow Orchestration
+├── infrastructure/k8s/                     # Active-Active OpenShift manifests
+│   ├── 00-namespace.yaml
+│   ├── 01-deployment.yaml                  # Includes PodAntiAffinity
+│   ├── 02-service.yaml
+│   ├── 03-route.yaml
+│   ├── 04-redis-ha.yaml                    # StatefulSet for Distributed Cache
+│   └── 05-postgres-ha.yaml                 # StatefulSet for Distributed Data
 ├── data/                                   # Database Migrations
 │   ├── migrations/                         # Flyway schemas
 │   └── seed_regulations.sql                # Vector rules database seed values

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xbank-harness
+  namespace: xbank-agentive
+  labels:
+    app: xbank-harness
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: xbank-harness
+  template:
+    metadata:
+      labels:
+        app: xbank-harness
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - xbank-harness
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: harness-app
+        image: xbank/harness:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "openshift"
+        - name: TEMPORAL_HOST
+          value: "temporal-frontend.temporal.svc.cluster.local"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true

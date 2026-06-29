@@ -64,10 +64,10 @@ The framework integrates Agile Scrum ceremonies directly with the phases of the 
 	•	Agent Action: Agent 4 manages the Human-in-the-Loop workflows, pausing execution until stakeholders formally approve the logical drift. Agent 5 executes a Semantic Triangle Check.
 	•	Mandatory Board Artifacts: The workflow requires explicit review of the Intent-Driven Sequence UML (`sequence_temporal_workflow_v2.puml`) and Cognitive Circuit Breaker State Diagram (`state_deterministic_fallback_v2.puml`) before IdP CAB sign-off is permitted.
 
-![sequence_temporal_workflow_v2.png](sequence_temporal_workflow_v2.png)
+![Sequence Diagram](sequence_temporal_workflow_v2.svg)
 
 
-![state_deterministic_fallback_v2.png](state_deterministic_fallback_v2.png)
+![State Diagram](state_deterministic_fallback_v2.svg)
 
 	•	Sprint Retrospective (ADM Phase H: Architecture Change Management):
 	•	Process: Analyzing team velocity, quality, workload amplification, and technical debt.
@@ -172,7 +172,7 @@ To keep our logical model aligned with physical runtime assets, we implement a C
 ### 8.6 Strategic SWOT Analysis
 To ensure executive alignment, Agent 4 validates the strategic risk posture of the architecture against the following matrix:
 
-![SWOT Analysis](swot_analysis.png)
+![SWOT Analysis](swot_analysis.svg)
 
 | **Strengths** (Internal) | **Weaknesses** (Internal) |
 | :--- | :--- |
