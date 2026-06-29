@@ -77,11 +77,8 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
              [COMPENSATING_ROLLBACK] ──► [REVERSED]
 2.1 Compensating Rollback Event Schema
 {
-
-  "saga_id": "temporal-uuid-901234",
-
+  "workflow_id": "temporal-uuid-901234",
   "transaction_type": "CARD_RESERVATION_COMPENSATION",
-
   "account_id": "1b2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
 
   "reversal_amount": 450.00,
