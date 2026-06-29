@@ -1,11 +1,11 @@
-Strategy, Governance & Roadmaps - RedBank V2 Directory Mapping
+Strategy, Governance & Roadmaps - X_Bank V2 Directory Mapping
 The Strategy & Governance domain governs our strategic roadmap, Architectural Decision Records (ADRs), Tech Radar, Technical Debt Index (TDI) calculations, and enterprise integrations. It maps directly to our directory structure:
 1. Strategic Architectural Decision Records (ADRs)
 	•	Implementation Code: docs/architecture_codex.md & app/prompts/Templates.java
 	•	Mechanism:
 	•	docs/architecture_codex.md documents our active ADRs (ADR-001: Localized AI, ADR-002: Temporal Orchestration, ADR-003: FAPI2, ADR-004: Zero-Trust Log Sanitization).
 	•	app/prompts/Templates.java embeds these ADR boundaries directly into the system prompting parameters of our five agents, ensuring that all generated low-level code or designs automatically comply with our strategic decisions.
-2. RedBank Enterprise Tech Radar
+2. X_Bank Enterprise Tech Radar
 	•	Implementation Code: app/agents/Agent5Dora.java
 	•	Mechanism: Agent 5 monitors development repositories and physical environments. Any newly detected technologies or libraries are evaluated and logged as "Assess", "Hold", "Trial", or "Adopt" entries inside our central portfolio, maintaining standard TOGAF Architecture Change Management.
 3. Technical Debt Index & Strategic Decision Helper

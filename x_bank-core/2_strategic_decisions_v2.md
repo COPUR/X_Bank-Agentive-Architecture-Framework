@@ -1,8 +1,8 @@
-Part 2: Strategic Decisions - RedBank Agent-Native Architecture Framework
+Part 2: Strategic Decisions - X_Bank Agent-Native Architecture Framework
 2.1 ADR-001: Localized AI Orchestration for Data Sovereignty
 	•	Status: APPROVED
 	•	Context: Under the Central Bank of the UAE (CBUAE) Cloud Computing Regulation, sensitive metadata, infrastructure IP locations, or system boundaries must not reside outside the sovereign borders of the UAE.
-	•	Decision: Run all agent reasoning models locally inside RedBank's private VPC on AWS EKS using Hugging Face pipelines and containerized vLLM endpoints. External model calls are strictly blocked.
+	•	Decision: Run all agent reasoning models locally inside X_Bank's private VPC on AWS EKS using Hugging Face pipelines and containerized vLLM endpoints. External model calls are strictly blocked.
 	•	Consequences: Complete compliance with data sovereignty regulations. Requires dedicated GPU node pools on AWS EKS, increasing infrastructure costs.
 2.2 ADR-002: Event-Driven Transaction Temporal Pattern
 	•	Status: APPROVED

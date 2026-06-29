@@ -1,4 +1,4 @@
-Part 8: TOGAF 10 Agile, Tech Radar, & Enterprise Governance - RedBank Agent-Native Architecture
+Part 8: TOGAF 10 Agile, Tech Radar, & Enterprise Governance - X_Bank Agent-Native Architecture
 8.1 TOGAF 10 — Agile Practices Integration
 Under TOGAF 10 agile practices, enterprise architecture is transformed from static, heavyweight documentation into an iterative, dynamic, and continuous feedback loop. The Cognitive Orchestration Harness achieves this by implementing:
 
@@ -68,7 +68,7 @@ The framework integrates Agile Scrum ceremonies directly with the phases of the 
 	•	Agent Action: Agent 5 computes Workload Amplification metrics and SRE bottleneck summaries to optimize Autonomous Platform Automation (APA). Simultaneously, our Debt Management Engine calculates code-quality debt scores to automatically insert refactoring cards into the next sprint's backlog.
 
 
-8.3 RedBank Enterprise Tech Radar
+8.3 X_Bank Enterprise Tech Radar
 The Tech Radar is continually updated by Agent 5 and is structured around four enterprise rings:
 
           ASSESS                       HOLD

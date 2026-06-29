@@ -1,4 +1,4 @@
-Part 5: Possible Outputs - RedBank Agent-Native Architecture Framework
+Part 5: Possible Outputs - X_Bank Agent-Native Architecture Framework
 5.1 Simulated Execution Log (Agent 3 - Audit Intercept)
 [INFO] 2026-06-26 18:35:01 - Agent 3 Intercepting LLD payload from Agent 2.
 

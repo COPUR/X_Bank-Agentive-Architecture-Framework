@@ -1,4 +1,4 @@
-Technology Architecture - RedBank V2 Directory Mapping
+Technology Architecture - X_Bank V2 Directory Mapping
 The BDAT Technology Architecture establishes the physical infrastructure boundaries, the MSK Kafka event backbone, containerization parameters, and localized GPU AI pipelines. It maps directly to our directory structure:
 1. Containerization & EKS Deployment
 	•	Implementation Code: app/Dockerfile & docker-compose.yml

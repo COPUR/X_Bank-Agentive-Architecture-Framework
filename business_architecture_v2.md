@@ -1,5 +1,5 @@
-Business Architecture & Scrum Execution - RedBank V2 Directory Mapping
-Within the decoupled Business Architecture of RedBank, the agile planning lifecycle, BIAN domain alignments, and Scrum ceremonies map directly to the codebase components of our redbank-agent-native-architecture-framework-v2 structure:
+Business Architecture & Scrum Execution - X_Bank V2 Directory Mapping
+Within the decoupled Business Architecture of X_Bank, the agile planning lifecycle, BIAN domain alignments, and Scrum ceremonies map directly to the codebase components of our x_bank-agent-native-architecture-framework-v2 structure:
 1. Requirements Ingestion & Mapping (The Scrum Backlog)
 	•	Confluence Space Templates & PRDs: Handled by app/components/ConfluenceIngest.java. It calls the Confluence API (via app/agents/tools/ConfluenceConnector.java) to fetch XHTML storage formats.
 	•	Blueprint Creator App Metadata: Read by app/agents/Agent1Ingestion.java. It parses custom field tables in the PRD, converting structural metadata into a machine-readable JSON schema.

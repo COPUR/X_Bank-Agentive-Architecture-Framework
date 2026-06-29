@@ -1,4 +1,4 @@
-Data Architecture - RedBank V2 Directory Mapping
+Data Architecture - X_Bank V2 Directory Mapping
 The BDAT Data Architecture governs our database-per-service isolation, vector compliance rules, Temporal events, and zero-trust masking filters. It maps directly to our directory structure as follows:
 1. Database-Per-Service Isolation (PostgreSQL RDS Multi-AZ)
 	•	Implementation Code: data/migrations/

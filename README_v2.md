@@ -1,8 +1,8 @@
-RedBank Agent-Native Architecture Framework (Version 2.0)
+X_Bank Agent-Native Architecture Framework (Version 2.0)
 Production-Grade Code Directory Tree Mapping our AI Harness
-This repository represents the production-ready implementation of our high-governance, autonomous architectural system inside RedBank. It is structured around the modular directory layout of modern, enterprise-grade AI systems, completely decoupling stateless compute models from our security and integration "Harness".
+This repository represents the production-ready implementation of our high-governance, autonomous architectural system inside X_Bank. It is structured around the modular directory layout of modern, enterprise-grade AI systems, completely decoupling stateless compute models from our security and integration "Harness".
 1. Directory Tree Structure
-redbank-agent-native-architecture-framework-v2/
+x_bank-agent-native-architecture-framework-v2/
 
 ├── app/
 

@@ -1,4 +1,4 @@
-Part 6: Risks and Tech Debts - RedBank Agent-Native Architecture
+Part 6: Risks and Tech Debts - X_Bank Agent-Native Architecture
 6.1 Performance Overhead of Localized LLM Inference
 	•	Risk: Localized inference of heavy foundation models (Llama-3-70B) on private GPU nodes introduces significant Time-to-First-Token (TTFT) latency overhead per validation step.
 	•	Mitigation: Implement Semantic Caching (vector-based caches) to bypass inference for similar queries, and rely heavily on Model Cascades (routing simpler intents to fast SLMs).

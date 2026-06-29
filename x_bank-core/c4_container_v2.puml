@@ -3,7 +3,7 @@
 
 LAYOUT_WITH_LEGEND()
 
-title Container Diagram - RedBank Agent-Native Architecture
+title Container Diagram - X_Bank Agent-Native Architecture
 
 System_Boundary(harness_boundary, "Cognitive Orchestration Harness") {
     Container(agent_gateway, "Kong Agent Gateway & Security LLM", "Kong API Gateway / vLLM", "Manages agent fleet, routes traffic, and enforces Cognitive Security & Streaming DLP.")

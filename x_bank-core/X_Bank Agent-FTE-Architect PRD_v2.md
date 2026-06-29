@@ -1,8 +1,8 @@
 Project Requirement Document (PRD)
-Project Name: RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) Document Owner: Lead Enterprise Architect, RedBank Version: 1.0
+Project Name: X_Bank Agent-Native Architecture Framework (Agent-FTE-Architect) Document Owner: Lead Enterprise Architect, X_Bank Version: 1.0
 1. Executive Overview
 1.1 Objective
-The RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) is an enterprise-grade AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) Software Development Life Cycle (SDLC) architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (PCI-DSS v4, UAECB Open Finance Circular 3/2025, and GDPR).
+The X_Bank Agent-Native Architecture Framework (Agent-FTE-Architect) is an enterprise-grade AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) Software Development Life Cycle (SDLC) architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (PCI-DSS v4, UAECB Open Finance Circular 3/2025, and GDPR).
 
 It acts as a secure, highly governed "Architectural Harness" wrapping localized, stateless AI compute models, transforming regulatory controls into programmatic deployment gates.
 1.2 Target Audience / Users
@@ -22,7 +22,7 @@ In-Scope:
 
 Out-of-Scope (Non-Goals):
 
-	•	Complete, high-risk, "big bang" rewrite of RedBank's legacy monolithic core banking databases (handled safely via the Strangler Fig Pattern).
+	•	Complete, high-risk, "big bang" rewrite of X_Bank's legacy monolithic core banking databases (handled safely via the Strangler Fig Pattern).
 	•	Direct routing of any internal system metadata, IP topologies, or PII outside the bank's sovereign private VPC borders (prohibiting the use of public SaaS APIs).
 2. Functional Requirements
 Detail the exact behaviors, features, and workflows the system must support.

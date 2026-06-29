@@ -3,7 +3,7 @@
 
 LAYOUT_WITH_LEGEND()
 
-title System Context Diagram - RedBank Agent-Native Architecture
+title System Context Diagram - X_Bank Agent-Native Architecture
 
 Person(architect, "Enterprise Architect", "Manages architectural blueprints, defines bounded specializations, and reviews complex HITL requests.")
 Person(ciso, "Compliance / CISO Office", "Audits security policies, reviews TRA reports, and controls the Deterministic Kill Switch.")

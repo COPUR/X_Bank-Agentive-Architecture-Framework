@@ -1,4 +1,4 @@
-Application Architecture - RedBank V2 Directory Mapping
+Application Architecture - X_Bank V2 Directory Mapping
 The BDAT Application Architecture manages our low-level API endpoints, the 5 multi-agent containers, and our automated Semantic Triangle code checks. It maps directly to our directory structure:
 1. Low-Level API Specifications
 	•	Implementation Code: app/Application.java & app/Entities.java

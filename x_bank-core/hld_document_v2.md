@@ -1,9 +1,9 @@
-High-Level Design (HLD) Document - RedBank Agent-Native Architecture Framework
+High-Level Design (HLD) Document - X_Bank Agent-Native Architecture Framework
 Document Identifier: RB-EAF-2026-HLD Classification: RESTRICTED - ENTERPRISE ARCHITECTURE Target Audience: CAB/ARB Board, Solutions Architects, DevSecOps Leads Version: 1.0
 
 
 1. Executive Summary & Core Philosophy
-The RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
+The X_Bank Agent-Native Architecture Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
 1.1 The Harness Engineering Principle: Agent = Model + Harness
 Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Cognitive Orchestration Harness containing our Kong API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
 1.2 The LFI-Sandwich Architecture Tiers
@@ -100,5 +100,5 @@ CREATE TABLE tbl_cards (
 
 6. Multi-Agent Temporal Sequence
 The system orchestrates intent across 5 different agents via the Temporal worker pattern. 
-*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/redbank-core/sequence_temporal_workflow_v2.puml).*
+*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
 
