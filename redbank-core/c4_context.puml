@@ -1,0 +1,32 @@
+@startuml c4_context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context Diagram - RedBank Agent-Native Architecture
+
+Person(architect, "Enterprise Architect", "Manages architectural blueprints, defines bounded specializations, and reviews complex HITL requests.")
+Person(ciso, "Compliance / CISO Office", "Audits security policies, reviews TRA reports, and controls the Deterministic Kill Switch.")
+Person(sre, "DevOps / SRE Lead", "Manages Autonomous Platform Automation (APA) and reviews Workload Amplification metrics.")
+
+System(harness, "Cognitive Orchestration Harness", "Automates E2E SDLC design, review, regulatory verification, and stateful multi-agent workflows.")
+
+System_Ext(jira, "Jira REST API", "Manages requirements backlog and engineering tasks.")
+System_Ext(confluence, "Confluence REST API", "Hosts Product Requirements Documents (PRDs) and Space Templates.")
+System_Ext(jama, "Jama Software", "Maintains requirements traceability and compliance coverage mapping.")
+System_Ext(github, "GitHub / GitOps", "Hosts microservices code repositories and CI/CD triggers.")
+System_Ext(argocd, "ArgoCD", "Handles container orchestration GitOps deployments.")
+System_Ext(servicenow, "ServiceNow CMDB", "Hosts physical infrastructure asset topologies.")
+
+Rel(architect, confluence, "Manages PRD Space Templates in")
+Rel(confluence, jira, "Generates backlog issues from approved tables in")
+Rel(jira, jama, "Synchronizes bidirectionally with")
+Rel(jira, harness, "Dispatches webhook triggers to the Agent Gateway in")
+Rel(harness, confluence, "Fetches storage format of approved PRDs from")
+Rel(harness, servicenow, "Queries live asset topology from")
+Rel(harness, github, "Validates source-code and opens PRs on")
+Rel(harness, argocd, "Syncs validated schemas to")
+Rel(ciso, harness, "Audits TRA reports & triggers Kill Switch in")
+Rel(sre, harness, "Analyzes Workload Amplification telemetry in")
+Rel(harness, architect, "Requests mandatory Human-in-the-Loop approvals from")
+@enduml

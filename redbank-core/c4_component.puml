@@ -1,0 +1,35 @@
+@startuml c4_component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram - Domain Agent 3 (Compliance Gate)
+
+Container(temporal_kafka, "Multi-Agent Orchestrator", "Temporal + Kafka (MSK)", "Publishes intent-driven workflows and state changes.")
+Container(model_cascades, "Stateless Compute Cascades", "vLLM / SLM + LLaMA", "Mixture of Experts: Fast SLMs for PII regex, LLaMA-3-70B for complex rules.")
+ContainerDb(memory_banks, "Persistent Memory Banks", "PostgreSQL (pgvector)", "Hosts active legal and regulatory texts with strict trust scoring and write filters.")
+
+Container_Boundary(agent3_boundary, "Agent 3 (Compliance Gate Service)") {
+    Component(workflow_worker, "Temporal Workflow Worker", "Temporal SDK", "Listens to orchestration intents for incoming design schemas.")
+    Component(vector_scanner, "Vector Rule Scanner Component", "Spring AI", "Performs semantic cosine-similarity searches on local memory banks.")
+    Component(validator, "Regulatory Validator Core", "Spring Boot Service", "Coordinates compliance checks against PCI-DSS v4, GDPR, and CBUAE.")
+    Component(circuit_breaker, "Graceful Degradation Breaker", "Resilience4j", "Falls back to deterministic rules if model inference fails or times out.")
+    Component(security_filter, "Cognitive Security Filter", "Spring Security", "Validates output and trust scores before writing state back to memory.")
+    Component(hardstop_mgr, "Compliance Hard-Stop Manager", "GitOps Hook Trigger", "Signals pipeline build failures and freezes target ArgoCD branches upon critical violations.")
+    Component(tra_generator, "TRA Report Generator", "fpdf2 / ReportLab Generator", "Compiles highly structured PDF Targeted Risk Analysis (TRA) logs.")
+    Component(intent_publisher, "Intent Publisher Component", "Temporal SDK", "Publishes final audit decisions back to orchestrator.")
+}
+
+Rel(temporal_kafka, workflow_worker, "Dispatches LLD intent to")
+Rel(workflow_worker, validator, "Passes payload schema to")
+Rel(validator, vector_scanner, "Queries rule contexts from")
+Rel(vector_scanner, memory_banks, "Executes cosine-similarity searches in")
+Rel(validator, circuit_breaker, "Routes reasoning validation through")
+Rel(circuit_breaker, model_cascades, "Executes Model Cascades reasoning over")
+Rel(validator, security_filter, "Filters outputs via")
+Rel(security_filter, memory_banks, "Writes validated state to")
+Rel(validator, hardstop_mgr, "Triggers hard-stop in")
+Rel(hardstop_mgr, tra_generator, "Requests TRA report compilation from")
+Rel(validator, intent_publisher, "Passes final audit decision to")
+Rel(intent_publisher, temporal_kafka, "Completes workflow intent in")
+@enduml

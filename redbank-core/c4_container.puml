@@ -1,0 +1,42 @@
+@startuml c4_container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Container Diagram - RedBank Agent-Native Architecture
+
+System_Boundary(harness_boundary, "Cognitive Orchestration Harness") {
+    Container(agent_gateway, "Agent Gateway & Security LLM", "Spring Cloud Gateway / vLLM", "Manages agent fleet, routes traffic, and enforces Cognitive Security & Streaming DLP.")
+    
+    Container(agent1, "Domain Agent 1 (Ingestion)", "Spring Boot / gVisor WASM", "Autonomous intent-driven agent mapping logical features to BIAN service domains.")
+    Container(agent2, "Domain Agent 2 (Topology)", "Spring Boot / gVisor WASM", "Autonomous intent-driven agent querying CMDB and drafting low-level design schemas.")
+    Container(agent3, "Domain Agent 3 (Compliance Gate)", "Spring Boot / gVisor WASM", "Intercepts workflows, executes pgvector compliance audits, and blocks pipelines.")
+    Container(agent4, "Domain Agent 4 (HITL Governance)", "Spring Boot / gVisor WASM", "Orchestrates sign-offs, verifies OIDC RBAC, and manages Human-in-the-Loop workflows.")
+    Container(agent5, "Domain Agent 5 (Cognitive Quality)", "Spring Boot / gVisor WASM", "Performs Semantic Triangle checks and tracks workload amplification metrics.")
+    
+    ContainerDb(memory_banks, "Persistent Memory Banks", "pgvector / Qdrant", "Long-Term Memory with strict write filters, trust scoring, and active regulatory vector texts.")
+    Container(temporal_kafka, "Multi-Agent Orchestrator", "Temporal + Kafka (MSK)", "Manages real-time intent-driven workflows and stateful long-running execution.")
+    
+    Container(semantic_cache, "Semantic Vector Cache", "Redis / Vector Search", "Caches semantic representations of prompts to bypass heavy model inference.")
+    Container(local_llm, "Stateless Compute Engine (Cascades)", "vLLM / SLM + LLaMA", "Mixture of Experts: Fast SLMs for simple tasks, local LLaMA-3-70B for complex reasoning.")
+}
+
+System_Ext(atlassian, "Atlassian Suite (Jira/Confluence)", "SaaS Enterprise Planning")
+System_Ext(github_ext, "GitHub VCS", "Source Repository")
+
+Rel(atlassian, agent_gateway, "Dispatches Jira webhooks to")
+Rel(agent_gateway, semantic_cache, "Checks for similar intents in")
+Rel(agent_gateway, temporal_kafka, "Initiates secure workflow intent in")
+Rel(agent1, confluence, "Fetches XHTML format from")
+Rel(temporal_kafka, agent1, "Dispatches ingestion intent to")
+Rel(agent1, temporal_kafka, "Returns extracted context to")
+Rel(temporal_kafka, agent2, "Dispatches topology mapping intent to")
+Rel(agent2, temporal_kafka, "Returns LLD schema to")
+Rel(temporal_kafka, agent3, "Dispatches compliance audit intent to")
+Rel(agent3, memory_banks, "Queries vector rules & stores state securely in")
+Rel(agent3, local_llm, "Validates logic via model cascades in")
+Rel(temporal_kafka, agent4, "Triggers Human-in-the-loop sign-off intent via")
+Rel(agent4, argocd, "Syncs approved metadata to")
+Rel(github_ext, agent_gateway, "Triggers PR checks via")
+Rel(agent_gateway, agent5, "Routes PR for Semantic Triangle check to")
+@enduml
