@@ -160,3 +160,18 @@ To keep our logical model aligned with physical runtime assets, we implement a C
 	•	CMDB Updates: Any physical infrastructure changes (e.g., new container node groups or RDS read-replicas) are captured on the CMDB (ServiceNow) layer.
 	•	Event Broadcast: The CMDB publishes a CDC event to the Apache Kafka cmdb-cdc-updates topic.
 	•	Agent Reconciliation: Agent 5 consumes this event and runs a Semantic Triangle Check comparing the newly detected physical resources with our logical Git-driven HLD schemas. Any unauthorized modifications are logged as "Drift Deviations" in our Tech Radar.
+
+
+
+### 8.6 Strategic SWOT Analysis
+To ensure executive alignment, Agent 4 validates the strategic risk posture of the architecture against the following matrix:
+
+![SWOT Analysis](swot_analysis.png)
+
+| **Strengths** (Internal) | **Weaknesses** (Internal) |
+| :--- | :--- |
+| - Strict Regulatory Guardrails (CBUAE/PCI-DSS)<br>- Deterministic State Control (Temporal)<br>- High-Speed Semantic Caching | - High Upfront GPU CapEx<br>- Complex K8s/Temporal Learning Curve |
+
+| **Opportunities** (External) | **Threats** (External) |
+| :--- | :--- |
+| - Zero-Touch Software Lifecycle<br>- Massive Speed-to-Market<br>- Automated Artifact Traceability | - Cloud LLM Latency (TTFT)<br>- Model Hallucinations (mitigated by Agent 3)<br>- Vendor Lock-in (Kong/Temporal) |

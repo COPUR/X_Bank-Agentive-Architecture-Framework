@@ -3,9 +3,10 @@ Document Identifier: RB-EAF-2026-HLD Classification: RESTRICTED - ENTERPRISE A
 
 
 1. Executive Summary & Core Philosophy
-The X_Bank Agent-Native Architecture Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
+**Mission**: Automate E2E SDLC design, regulatory review, and code reconciliation under CBUAE, PCI-DSS, and GDPR standards.
 1.1 The Harness Engineering Principle: Agent = Model + Harness
-Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Cognitive Orchestration Harness containing our Kong API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
+**Agent = Model + Harness + Bounded Specialization**
+LLMs act as stateless compute, secured by Kong, Kafka, and PostgreSQL.
 1.2 The LFI-Sandwich Architecture Tiers
 	•	The Upper Layer: Business and product requirements established in Confluence and Jira.
 	•	The Middle Layer: Logical design and low-level specifications aligned with the BIAN framework.

@@ -1,0 +1,19 @@
+@startmindmap
+* X_Bank Agentive Architecture
+** Strengths
+*** Strict Regulatory Guardrails (CBUAE/PCI-DSS)
+*** Deterministic State Control (Temporal)
+*** Semantic Caching (pgvector)
+** Weaknesses
+*** High Upfront GPU CapEx
+*** Complex K8s/Temporal Learning Curve
+left side
+** Opportunities
+*** Zero-Touch Software Lifecycle
+*** Massive Speed-to-Market
+*** Automated Artifact Traceability
+** Threats
+*** Cloud LLM Latency (TTFT)
+*** Model Hallucinations (mitigated by Agent 3)
+*** Vendor Lock-in (Kong/Temporal Enterprise)
+@endmindmap
