@@ -1,3 +1,4 @@
+/Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/services/CognitiveWorkflow.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/prompts/Registry.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/agents/tools/ConfluenceConnector.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/prompts/Templates.java
@@ -12,6 +13,7 @@
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/agents/tools/VectorSearchService.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/observability/TokenTracker.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/observability/TraceLogger.java
+/Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/services/CognitiveWorkflowImpl.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/config/SecurityConfig.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/observability/DebtCalculator.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/Application.java
@@ -19,6 +21,7 @@
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/services/TemporalOrchestrator.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/evaluation/QualityGates.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/components/CmdbTopographer.java
+/Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/services/AgentActivities.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/agents/Agent3Scoper.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/services/SlideCompiler.java
 /Users/alicopur/Downloads/RedBank Agentive-Architecture-Framework v2/src/main/java/com/xbank/harness/security/LogSanitizer.java
