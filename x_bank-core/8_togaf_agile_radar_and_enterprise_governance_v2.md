@@ -68,49 +68,15 @@ The framework integrates Agile Scrum ceremonies directly with the phases of the 
 	•	Agent Action: Agent 5 computes Workload Amplification metrics and SRE bottleneck summaries to optimize Autonomous Platform Automation (APA). Simultaneously, our Debt Management Engine calculates code-quality debt scores to automatically insert refactoring cards into the next sprint's backlog.
 
 
-8.3 X_Bank Enterprise Tech Radar
-The Tech Radar is continually updated by Agent 5 and is structured around four enterprise rings:
 
-          ASSESS                       HOLD
+### 8.3 X_Bank Enterprise Tech Radar
 
-     ┌──────────────┐             ┌──────────────┐
-
-     │ - gVisor K8s │             │ - Static Temporal│
-
-     │ - DPoP TLS   │             │   Workflows  │
-
-     │ - Braintrust │             │ - Plaintext  │
-
-     │   AI Tracing │             │   PII Logs   │
-
-     └──────┬───────┘             └──────┬───────┘
-
-            │                            │
-
-            ▼                            ▼
-
-          ADOPT                        TRIAL
-
-     ┌──────────────┐             ┌──────────────┐
-
-     │ - Temporal   │             │ - Security   │
-
-     │   Workflows  │             │   LLM Gateway│
-
-     │ - SPIFFE ID  │             │ - WASM Agents│
-
-     │ - Vector DBs │             │ - Semantic   │
-
-     │ - Fast SLMs  │             │   Vector     │
-     
-     │              │             │   Caching    │
-
-     └──────────────┘             └──────────────┘
-
-	•	ADOPT: Standard technologies approved for broad production use: Temporal Workflows, SPIFFE ID for Zero Trust, Vector DBs (pgvector), Fast SLMs for simple tasks.
-	•	TRIAL: Deployed in production-ready sandbox and pilot projects: Security LLM Gateway (Streaming DLP), WASM sandboxing for Agents, Semantic Vector Caching.
-	•	ASSESS: Technologies undergoing Proof of Technology (PoT) evaluations: gVisor K8s runtimes, Braintrust AI Tracing, DPoP token-bindings.
-	•	HOLD: Deprecated technologies or practices slated for active decommissioning: Static Temporal workflows over raw Kafka, plaintext/unencrypted logging.
+| **ADOPT** (Standard Production Use) | **TRIAL** (Sandbox / Pilots) | **ASSESS** (Proof of Concept) | **HOLD** (Deprecated / Decommissioning) |
+| :--- | :--- | :--- | :--- |
+| Temporal Workflows | Security LLM Gateway | gVisor K8s runtimes | Static Temporal Workflows |
+| SPIFFE ID Zero Trust | WASM Sandboxed Agents | Braintrust AI Tracing | Plaintext PII Logs |
+| Vector DBs (`pgvector`) | Semantic Vector Caching | DPoP Token-Bindings | Unencrypted S3 Buckets |
+| Fast SLMs (Local Compute) | | | |
 
 
 8.4 Debt Management & Strategic Decision Helper
@@ -157,28 +123,29 @@ Weighted Score
 
 
 
-### 8.4.4 CapEx vs. OpEx Financial Modeling (Hybrid-Cloud AI)
 
-Before CAB approvals are granted for new AI workflows, the Agent 4 Governor validates the projected infrastructure costs against the following Enterprise Financial Model. Our Architecture assumes a **Hybrid-Cloud** layout to balance sovereignty and elasticity.
+### 8.4.4 CapEx vs. OpEx: 3-Year Total Cost of Ownership (TCO)
+
+To secure CAB approval for large-scale AI deployment, the Agent 4 Governor validates projected infrastructure against this standard Hybrid-Cloud financial model.
 
 #### **CapEx (Capital Expenditures) - Upfront Investments**
-| Component | Rationale | Estimated Impact |
-| :--- | :--- | :--- |
-| **AWS EKS GPU Reserved Instances (RIs)** | 3-Year upfront commitment for `p4d.24xlarge` GPU nodes running localized LLaMA-3-70B models. | High Upfront. Eliminates unpredictable per-token SaaS pricing. |
-| **Temporal Enterprise License** | Upfront enterprise licensing for high-availability multi-agent worker orchestration. | Moderate Upfront. |
-| **Kong API Gateway Enterprise** | Licensing for advanced Security LLM plugins (Prompt Injection filtering). | Moderate Upfront. |
-| **Implementation / Architecture Setup** | One-time integration cost for connecting Confluence, Jira, and CMDB via Kafka CDC. | High Upfront. |
+| Component | Rationale | Est. 3-Year Cost | Impact Level |
+| :--- | :--- | :--- | :--- |
+| **AWS EKS GPU Reserved Instances (RIs)** | 3-Year upfront commitment for `p4d.24xlarge` GPU nodes running localized LLaMA-3 models. | **$315,000** | High Upfront. Eliminates unpredictable per-token SaaS pricing. |
+| **Temporal Enterprise License** | Upfront enterprise licensing for high-availability multi-agent worker orchestration. | **$85,000** | Moderate Upfront. |
+| **Kong API Gateway Enterprise** | Licensing for advanced Security LLM plugins (Prompt Injection filtering). | **$60,000** | Moderate Upfront. |
+| **Integration Architecture Setup** | One-time development cost for Kafka CDC and BIAN domain mapping. | **$120,000** | High Upfront. |
 
 #### **OpEx (Operational Expenditures) - Ongoing Run Costs**
-| Component | Rationale | Estimated Impact |
-| :--- | :--- | :--- |
-| **AWS MSK (Managed Kafka)** | Pay-as-you-go event streaming for asynchronous agent orchestration. | Scales linearly with message throughput. |
-| **AWS RDS PostgreSQL (pgvector)** | Ongoing storage and read-replica compute for the Semantic Vector Cache. | Predictable, low-to-moderate monthly cost. |
-| **CI/CD Pipeline Compute** | GitHub Actions / ArgoCD runner minutes for executing Agent 5's Semantic Triangle Checks. | Pay-per-minute, low cost. |
-| **Token Fallback APIs** | Metered token consumption for emergency Cloud LLM fallbacks if the local vLLM cluster degrades. | Minimal, strictly capped by budget alarms. |
+| Component | Rationale | Est. Monthly Cost | Impact Level |
+| :--- | :--- | :--- | :--- |
+| **AWS MSK (Managed Kafka)** | Pay-as-you-go event streaming for asynchronous agent orchestration. | **$2,500/mo** | Scales linearly with message throughput. |
+| **AWS RDS PostgreSQL (pgvector)** | Ongoing storage and read-replica compute for the Semantic Vector Cache. | **$800/mo** | Predictable, low monthly cost. |
+| **CI/CD Pipeline Compute** | GitHub Actions / ArgoCD runner minutes for executing Semantic Triangle Checks. | **$300/mo** | Pay-per-minute, minimal cost. |
+| **Token Fallback APIs (Emergency)** | Metered token consumption for emergency Cloud LLM fallbacks if local cluster degrades. | **$1,500/mo** | Highly volatile. Strictly capped by budget alarms. |
 
 > [!WARNING]
-> By purchasing upfront AWS RIs (CapEx), we significantly reduce the long-term operational cost of LLM inference, ensuring our Cognitive Gatekeepers (Agent 3) can scan massive LLD architectures without accumulating unbounded pay-per-token API fees.
+> By purchasing upfront AWS RIs (**CapEx**), we heavily reduce the long-term operational cost of LLM inference (**OpEx**). If we relied purely on SaaS LLM tokens (e.g., OpenAI/Anthropic), the high volume of LLD architecture scans by Agent 3 would result in unbounded, catastrophic OpEx scaling over a 3-year term.
 
 8.5 Software AG Alfabet & CMDB CDC Integration
 8.5.1 API-Driven Alfabet Updates

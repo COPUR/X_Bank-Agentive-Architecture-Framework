@@ -12,6 +12,17 @@ Autonomous models deployed in banking environments require strict boundaries. Th
 	•	The Lower Layer: Comprehensive post-processing compliance validation, automated remediation, and code auditing.
 
 
+
+### 1.3 Deployment Tiers & Network Flow Matrix
+
+| Tier Zone | Network Placement | Core Technologies | Function |
+| :--- | :--- | :--- | :--- |
+| **Ingestion Edge** | DMZ (Public facing) | Kong Gateway, Security LLM | Validates JWTs, intercepts Prompt Injections via Streaming DLP. |
+| **Orchestration Core** | Private VPC | Temporal Enterprise, AWS MSK | Maintains distributed transaction state and async worker events. |
+| **Secure Compute** | EKS GPU Nodes | vLLM (LLaMA-3), gVisor/WasmEdge | Executes strict, sandboxed LLM generations isolated from internet. |
+| **Master Storage** | Private RDS Subnet | PostgreSQL (`pgvector`), Redis | Caches semantic similarities to bypass LLM inference (TTFT mitigation). |
+
+
 2. System Context (C4 Level 1)
 The System Context diagram describes how the Cognitive Orchestration Harness interacts with users (Architects, CISO, SREs) and external enterprise systems.
 2.1 Context Diagram
