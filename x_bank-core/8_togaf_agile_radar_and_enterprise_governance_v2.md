@@ -156,6 +156,30 @@ Weighted Score
 
 
 
+
+### 8.4.4 CapEx vs. OpEx Financial Modeling (Hybrid-Cloud AI)
+
+Before CAB approvals are granted for new AI workflows, the Agent 4 Governor validates the projected infrastructure costs against the following Enterprise Financial Model. Our Architecture assumes a **Hybrid-Cloud** layout to balance sovereignty and elasticity.
+
+#### **CapEx (Capital Expenditures) - Upfront Investments**
+| Component | Rationale | Estimated Impact |
+| :--- | :--- | :--- |
+| **AWS EKS GPU Reserved Instances (RIs)** | 3-Year upfront commitment for `p4d.24xlarge` GPU nodes running localized LLaMA-3-70B models. | High Upfront. Eliminates unpredictable per-token SaaS pricing. |
+| **Temporal Enterprise License** | Upfront enterprise licensing for high-availability multi-agent worker orchestration. | Moderate Upfront. |
+| **Kong API Gateway Enterprise** | Licensing for advanced Security LLM plugins (Prompt Injection filtering). | Moderate Upfront. |
+| **Implementation / Architecture Setup** | One-time integration cost for connecting Confluence, Jira, and CMDB via Kafka CDC. | High Upfront. |
+
+#### **OpEx (Operational Expenditures) - Ongoing Run Costs**
+| Component | Rationale | Estimated Impact |
+| :--- | :--- | :--- |
+| **AWS MSK (Managed Kafka)** | Pay-as-you-go event streaming for asynchronous agent orchestration. | Scales linearly with message throughput. |
+| **AWS RDS PostgreSQL (pgvector)** | Ongoing storage and read-replica compute for the Semantic Vector Cache. | Predictable, low-to-moderate monthly cost. |
+| **CI/CD Pipeline Compute** | GitHub Actions / ArgoCD runner minutes for executing Agent 5's Semantic Triangle Checks. | Pay-per-minute, low cost. |
+| **Token Fallback APIs** | Metered token consumption for emergency Cloud LLM fallbacks if the local vLLM cluster degrades. | Minimal, strictly capped by budget alarms. |
+
+> [!WARNING]
+> By purchasing upfront AWS RIs (CapEx), we significantly reduce the long-term operational cost of LLM inference, ensuring our Cognitive Gatekeepers (Agent 3) can scan massive LLD architectures without accumulating unbounded pay-per-token API fees.
+
 8.5 Software AG Alfabet & CMDB CDC Integration
 8.5.1 API-Driven Alfabet Updates
 Our Enterprise Architecture is fully integrated with Software AG Alfabet to prevent "design drift":

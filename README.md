@@ -15,6 +15,8 @@ Welcome to the **X_Bank Agent-Native Architecture Framework**, a production-grad
 At X_Bank, we do not deploy raw Large Language Models (LLMs) into production. Instead, we adhere to the **LFI-Sandwich Architecture**, wrapping stateless LLM compute inside a highly secure and deterministic **Cognitive Orchestration Harness**. 
 The equation is simple: **`Agent = Model + Harness + Bounded Specialization`**
 
+![C4 Context Diagram](x_bank-core/c4_context.png)
+
 This ensures that the AI cannot hallucinate outside of strict regulatory boundaries, specifically conforming to:
 - **CBUAE Circular 3/2025 (Open Finance)**
 - **PCI-DSS v4 (Cardholder Data Environments)**
@@ -25,6 +27,8 @@ This ensures that the AI cannot hallucinate outside of strict regulatory boundar
 
 ## 🤖 The 5 Agent Personas
 The framework decouples E2E execution into 5 highly bounded, specialized agents. Each agent handles a specific tier of the architectural lifecycle, orchestrated via **Temporal**:
+
+![C4 Container Diagram](x_bank-core/c4_container.png)
 
 1. **Agent 1 (Ingestion / Squad Tier)**: Polls Jira and Confluence Webhooks, mapping product requirements into structured BIAN service domain boundaries.
 2. **Agent 2 (Topology / Squad Tier)**: Queries live CMDB GraphQL APIs to map physical infrastructure and generate Low-Level Design (LLD) schemas.

@@ -18,6 +18,8 @@ The System Context diagram describes how the Cognitive Orchestration Harness int
 	•	Source PUML File: c4_context.puml
 	•	Rendered Diagram: diagrams/c4_context.svg
 
+![C4 Context Diagram](c4_context.png)
+
 [Enterprise Architect] ────► [Confluence (Approved PRDs)] ────► [Jira Backlog] ───► [Jama Traceability]
 
          │                                                            │
@@ -40,6 +42,8 @@ The Container diagram decomposes the Cognitive Orchestration Harness into its co
 3.1 Container Diagram
 	•	Source PUML File: c4_container.puml
 	•	Rendered Diagram: diagrams/c4_container.svg
+
+![C4 Container Diagram](c4_container.png)
 3.2 Containers Description
 	•	Agent 1 (Ingestion Service): Java/Spring Boot container that polls Jira webhooks, pulls Confluence XHTML formats, and aligns logical features to BIAN service domains.
 	•	Agent 2 (Topology Mapper): Java/Spring Boot container that queries CMDB GraphQL APIs to map live network, database, and application topologies.
