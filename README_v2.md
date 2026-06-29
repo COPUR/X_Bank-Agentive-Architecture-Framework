@@ -12,7 +12,8 @@ redbank-agent-native-architecture-framework-v2/
 
 │   ├── models.py                  # Pydantic schemas and SQLAlchemy models for PostgreSQL
 
-│   ├── Dockerfile                 # EKS container definition
+│   ├── Dockerfile                 # EKS container definition (gVisor/WasmEdge)
+│   ├── build.wasm                 # WebAssembly build target for isolated agents
 
 │   ├── components/                # Ingestion & Context Collectors
 
@@ -22,7 +23,7 @@ redbank-agent-native-architecture-framework-v2/
 
 │   ├── services/                  # Core Business Logic
 
-│   │   ├── saga_orchestrator.py   # Distributed Temporal transaction workflow engine
+│   │   ├── temporal_orchestrator.py   # Distributed Temporal transaction workflow engine
 
 │   │   ├── rules_engine.py        # Core TOGAF-aligned rule validator
 
@@ -122,7 +123,7 @@ redbank-agent-native-architecture-framework-v2/
 
 ├── docker-compose.yml             # Local multi-agent orchestration deployment manifest
 
-├── pyproject.toml                 # Package dependencies (Spring Cloud equivalent)
+├── pyproject.toml                 # Package dependencies (Kong API Gateway equivalent)
 
 └── README.md                      # This document
 

@@ -6,7 +6,7 @@ This document outlines the architectural and security requirements for migrating
 ## 2. Architectural Requirements
 * **REQ-ARCH-01 (Domain Agents):** The architecture must transition from traditional microservices (Bounded Specialization (Role Boundaries)) to autonomous Domain Agents capable of understanding goals and reasoning.
 * **REQ-ARCH-02 (Orchestration):** The system must replace static Saga patterns and state machines with real-time, intent-driven Multi-Agent Workflows.
-* **REQ-ARCH-03 (Kong Agent Gateway):** An "Kong Agent Gateway" must be implemented to manage the agent fleet and explicitly block prompt injection attacks, replacing standard API Gateways.
+* **REQ-ARCH-03 (Kong Agent Gateway):** An "Kong Agent Gateway" must be implemented to manage the agent fleet and explicitly block prompt injection attacks, replacing standard Kong API Gateways.
 * **REQ-ARCH-04 (Memory Banks):** The system must support persistent Memory Banks that allow agents to recall past user actions and learn over time, replacing static database read/write models.
 
 ## 3. Runtime & Execution Environment

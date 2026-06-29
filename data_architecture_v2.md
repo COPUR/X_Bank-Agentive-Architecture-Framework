@@ -6,13 +6,16 @@ The BDAT Data Architecture governs our database-per-service isolation, vector co
 	•	tbl_accounts: Created and managed using isolated schemas (matching app/models.py definitions).
 	•	tbl_cards (Isolated CDE): Maintained on a physically separate RDS instance with zero database-level foreign key references to accounts.
 2. Distributed State & Temporal Transaction Orchestration
-	•	Implementation Code: app/services/saga_orchestrator.py
-	•	Mechanism: Since databases are isolated, cross-service transactions are coordinated asynchronously. The saga_orchestrator.py service consumes and publishes state change event payloads to the temporal-intent-events Kafka topic. It enforces strict rollback operations (e.g., reversing balance reservations) upon authorization failures.
+	•	Implementation Code: app/services/temporal_orchestrator.py
+	•	Mechanism: Since databases are isolated, cross-service transactions are coordinated asynchronously. The temporal_orchestrator.py service consumes and publishes state change event payloads to the temporal-intent-events Kafka topic. It enforces strict rollback operations (e.g., reversing balance reservations) upon authorization failures.
 3. Vector Compliance Rules (pgvector)
 	•	Implementation Code: scripts/seed_pgvector.py & app/agents/tools/vector_search.py
 	•	Mechanism:
 	•	The seed_pgvector.py script vectorizes and embeds raw regulatory texts (CBUAE Circular 3/2025, PCI-DSS v4, GDPR) and seeds them into the PostgreSQL RDS instance via data/seed_regulations.sql.
 	•	During design evaluations, app/agents/tools/vector_search.py performs cosine-similarity searches to check LLD schemas against these embedded compliance rules.
+5. Semantic Vector Cache (Redis/Qdrant)
+	•	Implementation Code: app/components/semantic_cache.py
+	•	Mechanism: Operates ahead of the LLM inference layer at the Kong Agent Gateway. It stores previously validated prompts and their embeddings. If a structurally similar architectural intent is detected, it returns the cached response, completely bypassing the heavy LLM computation and avoiding Time-to-First-Token (TTFT) latency.
 4. Zero-Trust Data Masking & Sanitization
 	•	Implementation Code: app/security/pii_masker.py & app/security/log_sanitizer.py
 	•	Mechanism:

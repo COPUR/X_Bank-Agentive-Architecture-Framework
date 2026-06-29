@@ -18,6 +18,7 @@ The BDAT Technology Architecture establishes the physical infrastructure boundar
 	•	Model: Llama-3-70B-Instruct.
 	•	Deployment: Running on private GPU nodes on AWS EKS. Inbound prompts and payloads are routed to the localized model via vLLM container ports.
 	•	Sovereignty Boundary: Meets strict CBUAE data residency guidelines. The local compute engine runs in isolation within our sovereign VPC boundary, completely blocked from the outbound public internet.
+	•	Semantic Vector Caching: Deployed alongside the vLLM engine, a Redis/Qdrant memory store serves as a high-speed semantic cache to mitigate TTFT bottlenecks.
 4. API Security, mTLS & DPoP Token Binding
 	•	All communication channels use Mutual TLS (mTLS) client certificates running over TLS 1.3.
 	•	app/security/cde_verifier.py acts as an active gate, enforcing that all ingress requests to the CDE contain cryptographically bound access tokens with valid DPoP signatures, preventing token hijacking.
