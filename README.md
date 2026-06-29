@@ -136,11 +136,12 @@ mvn spring-boot:run
 
 ---
 
-## 📖 Architectural Diagrams & Specs
-For exhaustive technical details regarding our C4 topologies, UML workflows, and state-machine fallbacks, please navigate into the `x_bank-core/` directory:
-- **[System Codex](x_bank-core/1_system_codex_v2.md)**
-- **[High Level Design (HLD)](x_bank-core/hld_document_v2.md)**
-- **[Low Level Design (LLD)](x_bank-core/lld_document_v2.md)**
-- **[TOGAF Agile Governance](x_bank-core/8_togaf_agile_radar_and_enterprise_governance_v2.md)**
+## 📖 Core Architecture & Governance Specifications
+This repository enforces strict, single-source-of-truth documentation. All structural blueprints, C4 models, and state-machine fallbacks are maintained within the `x_bank-core/` directory and natively embed their rendered `.png` diagrams:
 
-All generated `.png` and `.svg` architectural diagrams are embedded within these documents for immediate visual reference.
+| Specification | Core Contents |
+| :--- | :--- |
+| **[System Codex](x_bank-core/1_system_codex_v2.md)** | Agent Persona matrices, AI-Native Pillars, and Deterministic Circuit Breaker boundaries. |
+| **[High Level Design (HLD)](x_bank-core/hld_document_v2.md)** | C4 Context/Container models, Network Flow paths, and Deployment Tier architectures. |
+| **[Low Level Design (LLD)](x_bank-core/lld_document_v2.md)** | Temporal Sequence Workflows, Component Technology matrices, and DB Data Dictionaries. |
+| **[Enterprise Governance](x_bank-core/8_togaf_agile_radar_and_enterprise_governance_v2.md)** | Human-in-the-Loop CAB requirements, 3-Year TCO CapEx/OpEx matrices, and Strategic SWOT. |
