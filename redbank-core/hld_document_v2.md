@@ -5,7 +5,7 @@ Document Identifier: RB-EAF-2026-HLD Classification: RESTRICTED - ENTERPRISE A
 1. Executive Summary & Core Philosophy
 The RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
 1.1 The Harness Engineering Principle: Agent = Model + Harness
-Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Cognitive Orchestration Harness containing our API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
+Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Cognitive Orchestration Harness containing our Kong API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
 1.2 The LFI-Sandwich Architecture Tiers
 	•	The Upper Layer: Business and product requirements established in Confluence and Jira.
 	•	The Middle Layer: Logical design and low-level specifications aligned with the BIAN framework.

@@ -3,7 +3,7 @@ Part 1: System Codex - RedBank Agent-Native Architecture
 At RedBank, we establish a core design principle: Agent = Model + Harness + Bounded Specialization.
 
 	•	The Model (Stateless Compute Cascades): A Mixture of Experts ranging from fast Small Language Models (SLMs) for basic reasoning to large foundation models for complex structural validation.
-	•	The Harness (Cognitive Orchestration Layer): Deploys the physical infrastructure—including the Agent Gateway, Multi-Agent Workflow Orchestrators (Temporal + Kafka), Persistent Memory Banks with write-filters, and strict WASM sandboxing.
+	•	The Harness (Cognitive Orchestration Layer): Deploys the physical infrastructure—including the Kong Agent Gateway, Multi-Agent Workflow Orchestrators (Temporal + Kafka), Persistent Memory Banks with write-filters, and strict WASM sandboxing.
 	•	Harness Engineering (Enterprise Architecture): The software development and testing practices (Zero Trust SPIFFE IDs, Human-in-the-Loop workflows, GitOps via GitHub Actions and ArgoCD) used to design, govern, and audit this secure scaffolding.
 
 1.2 Bounded Specialization (Agent Personas)

@@ -6,7 +6,7 @@ LAYOUT_WITH_LEGEND()
 title Container Diagram - RedBank Agent-Native Architecture
 
 System_Boundary(harness_boundary, "Cognitive Orchestration Harness") {
-    Container(agent_gateway, "Agent Gateway & Security LLM", "Spring Cloud Gateway / vLLM", "Manages agent fleet, routes traffic, and enforces Cognitive Security & Streaming DLP.")
+    Container(agent_gateway, "Kong Agent Gateway & Security LLM", "Kong API Gateway / vLLM", "Manages agent fleet, routes traffic, and enforces Cognitive Security & Streaming DLP.")
     
     Container(agent1, "Domain Agent 1 (Ingestion)", "Spring Boot / gVisor WASM", "Autonomous intent-driven agent mapping logical features to BIAN service domains.")
     Container(agent2, "Domain Agent 2 (Topology)", "Spring Boot / gVisor WASM", "Autonomous intent-driven agent querying CMDB and drafting low-level design schemas.")

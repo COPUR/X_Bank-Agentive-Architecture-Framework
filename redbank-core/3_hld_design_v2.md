@@ -20,7 +20,7 @@ The multi-agent orchestrator operates as a stateful, long-running workflow syste
    
    │            ┌───────────────────────────────┐               │
    
-   │            │   Agent Gateway & Security    │               │
+   │            │   Kong Agent Gateway & Security    │               │
    
    │            │   (Prompt Injection Filter &  │               │
    
@@ -73,7 +73,7 @@ The multi-agent orchestrator operates as a stateful, long-running workflow syste
    └────────────────────────────────────────────────────────────┘
 
 3.2 Workflow States and Operational Logic
-	•	State 0: [Gateway Routing & Security]: Webhook hits the Agent Gateway. The Security LLM layer scans for prompt injection. The Semantic Cache is checked to bypass full execution if this is a duplicated intent.
+	•	State 0: [Gateway Routing & Security]: Webhook hits the Kong Agent Gateway. The Security LLM layer scans for prompt injection. The Semantic Cache is checked to bypass full execution if this is a duplicated intent.
 	•	State 1: [Jira Ingestion]: Ingestion of Jira backlog items. Agent 1 queries Confluence using Page ID references to retrieve storage formats, mapped via Model Cascades (SLM for simple parsing).
 	•	State 2: [Doc & CMDB Context Assembly]: Agent 1 and Agent 2 assemble design contexts. Active topologies are extracted from CMDB GraphQL APIs to perform relational mapping.
 	•	State 3: [Regulatory Validation & Graceful Degradation]: Agent 3 intercepts LLD schemas. Evaluates payloads for compliance via LLM cascades. If inference fails, it falls back to deterministic pgvector rules. Minor issues are auto-remediating; critical blocks trigger build failures. Memory writes are filtered to prevent Stored XSS.

@@ -13,4 +13,4 @@ Part 6: Risks and Tech Debts - RedBank Agent-Native Architecture
 	•	Mitigation: Implement Autonomous Platform Automation (Predictive HPA and Smart VPA) over Kubernetes to proactively manage node scaling.
 6.5 Prompt Injection & Cognitive Breaches
 	•	Risk: External payloads could contain adversarial prompts designed to manipulate agent decisions or extract context (Stored XSS for AI).
-	•	Mitigation: Route all external payloads through the Agent Gateway's dedicated "Security LLM" for strict Cognitive Security & Streaming DLP checks before processing.
+	•	Mitigation: Route all external payloads through the Kong Agent Gateway's dedicated "Security LLM" for strict Cognitive Security & Streaming DLP checks before processing.
