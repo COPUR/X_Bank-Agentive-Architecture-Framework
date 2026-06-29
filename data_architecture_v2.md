@@ -1,13 +1,13 @@
 Data Architecture - RedBank V2 Directory Mapping
-The BDAT Data Architecture governs our database-per-service isolation, vector compliance rules, SAGA events, and zero-trust masking filters. It maps directly to our directory structure as follows:
+The BDAT Data Architecture governs our database-per-service isolation, vector compliance rules, Temporal events, and zero-trust masking filters. It maps directly to our directory structure as follows:
 1. Database-Per-Service Isolation (PostgreSQL RDS Multi-AZ)
 	•	Implementation Code: data/migrations/
 	•	Mechanism: Database schemas are maintained and migrated using migration scripts inside data/migrations/. These scripts separate the co-located monolithic database into physically isolated schemas:
 	•	tbl_accounts: Created and managed using isolated schemas (matching app/models.py definitions).
 	•	tbl_cards (Isolated CDE): Maintained on a physically separate RDS instance with zero database-level foreign key references to accounts.
-2. Distributed State & SAGA Transaction Orchestration
+2. Distributed State & Temporal Transaction Orchestration
 	•	Implementation Code: app/services/saga_orchestrator.py
-	•	Mechanism: Since databases are isolated, cross-service transactions are coordinated asynchronously. The saga_orchestrator.py service consumes and publishes state change event payloads to the saga-tx-events Kafka topic. It enforces strict rollback operations (e.g., reversing balance reservations) upon authorization failures.
+	•	Mechanism: Since databases are isolated, cross-service transactions are coordinated asynchronously. The saga_orchestrator.py service consumes and publishes state change event payloads to the temporal-intent-events Kafka topic. It enforces strict rollback operations (e.g., reversing balance reservations) upon authorization failures.
 3. Vector Compliance Rules (pgvector)
 	•	Implementation Code: scripts/seed_pgvector.py & app/agents/tools/vector_search.py
 	•	Mechanism:

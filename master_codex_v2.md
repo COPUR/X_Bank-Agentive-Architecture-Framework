@@ -6,7 +6,7 @@ Document Identifier: RB-EAF-V2-CODEX Classification: RESTRICTED - ENTERPRISE A
 At RedBank, the foundational design principle is: Agent = Model + Harness.
 
 	•	The Stateless Model (Compute Engine): Standard reasoning models are stateless and lack native secure boundaries or data integration layers.
-	•	The Agentive Harness (Scaffolding): The surrounding, sovereign integration and security layer that wraps the model inside RedBank's trust perimeter (AWS EKS, MSK, pgvector).
+	•	The Cognitive Orchestration Harness (Scaffolding): The surrounding, sovereign integration and security layer that wraps the model inside RedBank's trust perimeter (AWS EKS, MSK, pgvector).
 	•	Harness Engineering (The Discipline): The rigorous engineering practices (Domain-Driven Design, Scrum, TOGAF ADM, and CI/CD GitOps) used to construct and maintain this safe, highly governed scaffolding.
 1.2 Spotify Topologies Mapping
 The 5 personas of the autonomous multi-agent framework act as distinct code modules of our architectural harness:
@@ -18,7 +18,7 @@ The 5 personas of the autonomous multi-agent framework act as distinct code modu
 	•	Agent 5 (SWE Intelligence & DORA Auditor - Chapter Tier): Code component: app/agents/agent5_dora.py. Reconciles running code via Semantic Triangle checks.
 2. STRATEGIC ARCHITECTURAL DECISIONS (ADRs)
 	•	ADR-001 (Sovereign VPC Inference): Run all LLaMA-3-70B model inferences locally on EKS GPU nodes using vLLM to comply with CBUAE data residency guidelines.
-	•	ADR-002 (Event-Driven SAGA Pattern): Decouple monolithic ledger tables into distinct schemas, orchestrating states over Kafka (saga-tx-events) with compensation rollbacks.
+	•	ADR-002 (Event-Driven Temporal Pattern): Decouple monolithic ledger tables into distinct schemas, orchestrating states over Kafka (temporal-intent-events) with compensation rollbacks.
 	•	ADR-003 (OAuth 2.1 & DPoP Token-Binding): Secure Open Banking gateways using mTLS client certificates and cryptographically bound access tokens to prevent replay hijack attacks.
 	•	ADR-004 (Zero-Trust Log Sanitization): Intercept diagnostic output streams in real-time to replace plaintext PII (IBANs, Customer IDs) and PAN tokens with secure masked tags.
 3. BDAT ENTERPRISE ARCHITECTURE DOMAIN MAPPINGS
@@ -33,7 +33,7 @@ The 5 personas of the autonomous multi-agent framework act as distinct code modu
 	•	Retro: Agent 5 computes anonymized DORA metrics while debt_calculator.py compiles Technical Debt Indexes (TDI).
 3.2 Data Architecture
 	•	Database-per-service: Migrated using scripts in data/migrations/, isolating accounts (tbl_accounts) and cards (tbl_cards) databases.
-	•	Distributed State: Managed by app/services/saga_orchestrator.py over the saga-tx-events Kafka topic.
+	•	Distributed State: Managed by app/services/saga_orchestrator.py over the temporal-intent-events Kafka topic.
 	•	Vector Rules Database: Seeding is handled by scripts/seed_pgvector.py and data/seed_regulations.sql. Similarity matching is executed via tools/vector_search.py against pgvector.
 	•	Masking & Sanitization: Implemented in app/security/pii_masker.py and app/security/log_sanitizer.py.
 3.3 Application Architecture
@@ -44,7 +44,7 @@ The 5 personas of the autonomous multi-agent framework act as distinct code modu
 	•	Semantic Triangle Check: Executed by app/evaluation/triangle_validator.py on pull-requests to verify code-to-design alignment.
 3.4 Technology Architecture
 	•	Deployment & Isolation: Deployed on AWS EKS with network-policies isolating namespaces. Local vLLM LLaMA models are hosted on GPU nodes.
-	•	Kafka MSK Event Bus: Configured via app/config.py and managed asynchronously across core topics (ingestion, lld, compliance, saga).
+	•	Kafka MSK Event Bus: Configured via app/config.py and managed asynchronously across core topics (ingestion, lld, compliance, temporal).
 	•	API Security & Token Binding: Handled by app/security/cde_verifier.py, enforcing DPoP signature validations on all CDE gateway connections.
 4. SOFTWARE AG ALFABET & CMDB INTEGRATION
 	•	API-driven Updates: Agent 4 (agent4_governor.py) utilizes tools/alfabet_client.py to trigger automated logical model updates in the Software AG Alfabet repository upon successful ArgoCD syncs.

@@ -1,12 +1,12 @@
 Project Requirement Document (PRD)
-Project Name: RedBank Agentive-Architecture-Framework (Agent-FTE-Architect) Document Owner: Lead Enterprise Architect, RedBank Version: 1.0
+Project Name: RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) Document Owner: Lead Enterprise Architect, RedBank Version: 1.0
 1. Executive Overview
 1.1 Objective
-The RedBank Agentive-Architecture-Framework (Agent-FTE-Architect) is an enterprise-grade AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) Software Development Life Cycle (SDLC) architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (PCI-DSS v4, UAECB Open Finance Circular 3/2025, and GDPR).
+The RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) is an enterprise-grade AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) Software Development Life Cycle (SDLC) architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (PCI-DSS v4, UAECB Open Finance Circular 3/2025, and GDPR).
 
 It acts as a secure, highly governed "Architectural Harness" wrapping localized, stateless AI compute models, transforming regulatory controls into programmatic deployment gates.
 1.2 Target Audience / Users
-	•	Enterprise & Solutions Architects: Maintain and query the global blueprint metadata, establish bounded contexts, and evaluate system integrations.
+	•	Enterprise & Solutions Architects: Maintain and query the global blueprint metadata, establish Bounded Specialization (Role Boundaries), and evaluate system integrations.
 	•	Security & Compliance Officers (CISO Office): Configure compliance boundaries, inspect Targeted Risk Analysis (TRA) logs, and audit cryptographic data-masking policies.
 	•	DevOps & SRE Leads: Monitor deployment velocity, verify source code alignments via semantic triangle checks, and analyze chapter-level friction without compromising developer psychological safety.
 	•	Autonomous Agentic Runners: Consume structured, machine-readable task listings to execute automated, verified GitOps sync deployments.
@@ -30,7 +30,7 @@ Detail the exact behaviors, features, and workflows the system must support.
 	•	Feature 1: Autonomous Ingestion (Agent 1): Continuously monitors the approved Jira stream, pulls Confluence storage-format HLD/LLD documents, and aligns requirements with BIAN Service Domains.
 	•	Specification: Must parse incoming Jira ticketing payloads and Confluence XHTML pages into structured, cleansed JSON context blocks.
 	•	Feature 2: Low-Level Topology Synthesis (Agent 2): Query the CMDB GraphQL API to generate live operational application topologies and relational database schemas.
-	•	Specification: Must output highly technical LLD specifications defining precise API paths (e.g., balance and card auth routes), entity schemas, and event-driven SAGA orchestrations.
+	•	Specification: Must output highly technical LLD specifications defining precise API paths (e.g., balance and card auth routes), entity schemas, and event-driven Temporal orchestrations.
 	•	Feature 3: Compliance Validation & Remediation (Agent 3): Serves as the post-processing compliance validator. Intercepts LLD outputs and evaluates payload metadata against localized vector databases (pgvector/Qdrant) holding compliance rules.
 	•	Specification: Must trigger automated Spring Boot logging sanitization filters for minor PII risks and execute a pipeline hard-stop with automated TRA generation for CDE boundary bypasses.
 	•	Feature 4: Stakeholder Sign-Off Facilitation (Agent 4): Coordinate approvals and generate governance presentations.
@@ -49,7 +49,7 @@ Detail the exact behaviors, features, and workflows the system must support.
 3.2 Data Processing & State Management
 	•	Inputs: XHTML storage format from Confluence pages, GraphQL payloads from CMDB APIs, git commit triggers from GitHub webhooks, and REST JSON schemas.
 	•	Outputs: Sanitized JSON design schemas, automated PR review comments, PDF TRA reports, and Google Slides presentations.
-	•	Dependencies: Apache Kafka (AWS MSK) for SAGA state orchestrations; pgvector PostgreSQL instances; Enterprise OIDC Identity Providers; Google Workspace APIs.
+	•	Dependencies: Apache Kafka (AWS MSK) for Intent-Driven Multi-Agent Workflows (Temporal + Kafka); pgvector PostgreSQL instances; Enterprise OIDC Identity Providers; Google Workspace APIs.
 4. Task Decomposition (Machine-Readable Mapping)
 For use in loop-based architectures or automated task runners. Break down requirements into discrete, trackable JSON-ready tasks.
 
@@ -83,5 +83,5 @@ Define the precise conditions required to consider the requirements fully satisf
 	•	[ ] The Requirements Traceability Matrix (RTM) successfully traces 100% of Confluence PRD requirements down to Jama verification runs and running code endpoints.
 5.2 Fallback & Error Handling
 	•	Failure State: If any agent validation step fails, experiences a network timeout (exceeding 10s), or encounters a critical compliance violation...
-	•	Required Resolution: ...the Agentive Harness must halt the GitOps pipeline, trigger a webhook to lock the ArgoCD branch, write an error trace to the Apache Kafka audit stream (arch-governance-audit), and restore the target environment state to the last verified stable baseline.
+	•	Required Resolution: ...the Cognitive Orchestration Harness must halt the GitOps pipeline, trigger a webhook to lock the ArgoCD branch, write an error trace to the Apache Kafka audit stream (arch-governance-audit), and restore the target environment state to the last verified stable baseline.
 

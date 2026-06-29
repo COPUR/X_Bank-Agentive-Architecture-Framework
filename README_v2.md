@@ -1,12 +1,12 @@
-RedBank Agentive-Architecture-Framework (Version 2.0)
+RedBank Agent-Native Architecture Framework (Version 2.0)
 Production-Grade Code Directory Tree Mapping our AI Harness
 This repository represents the production-ready implementation of our high-governance, autonomous architectural system inside RedBank. It is structured around the modular directory layout of modern, enterprise-grade AI systems, completely decoupling stateless compute models from our security and integration "Harness".
 1. Directory Tree Structure
-redbank-agentive-architecture-framework-v2/
+redbank-agent-native-architecture-framework-v2/
 
 ├── app/
 
-│   ├── main.py                    # Entrypoint for the Agentive Harness API
+│   ├── main.py                    # Entrypoint for the Cognitive Orchestration Harness API
 
 │   ├── config.py                  # OIDC/IdP configurations, Kafka brokers, and environment variables
 
@@ -22,7 +22,7 @@ redbank-agentive-architecture-framework-v2/
 
 │   ├── services/                  # Core Business Logic
 
-│   │   ├── saga_orchestrator.py   # Distributed SAGA transaction workflow engine
+│   │   ├── saga_orchestrator.py   # Distributed Temporal transaction workflow engine
 
 │   │   ├── rules_engine.py        # Core TOGAF-aligned rule validator
 
@@ -114,7 +114,7 @@ redbank-agentive-architecture-framework-v2/
 
 │       ├── code-style.md          # Code standards & typing specifications
 
-│       └── testing.md             # SAGA transaction and integration tests
+│       └── testing.md             # Temporal transaction and integration tests
 
 ├── CLAUDE.md                      # AI assistant project guidelines
 

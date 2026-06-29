@@ -3,7 +3,7 @@ The BDAT Technology Architecture establishes the physical infrastructure boundar
 1. Containerization & EKS Deployment
 	•	Implementation Code: app/Dockerfile & docker-compose.yml
 	•	Mechanism:
-	•	app/Dockerfile containerizes our core Agentive Harness API, allowing it to run as a microservice pod on AWS EKS.
+	•	app/Dockerfile containerizes our core Cognitive Orchestration Harness API, allowing it to run as a microservice pod on AWS EKS.
 	•	docker-compose.yml provides a local development manifest, spin-up configuration, and environment networking to orchestrate all 5 agent containers and our local pgvector PostgreSQL database during technical sandbox PoT evaluations.
 2. Apache Kafka (AWS MSK) Messaging Backbone
 	•	Implementation Code: app/config.py & app/services/
@@ -13,8 +13,8 @@ The BDAT Technology Architecture establishes the physical infrastructure boundar
 	•	arch-ingestion-topic: Maintained by Agent 1 to broadcast ingested context.
 	•	lld-generation-topic: Maintained by Agent 2 to broadcast LLD designs.
 	•	compliance-alerts: Maintained by Agent 3 to broadcast audit decisions.
-	•	saga-tx-events: Managed by SAGA orchestrator for distributed transaction state.
-3. Local Stateless Compute Engine (vLLM on private EKS GPU Nodes)
+	•	temporal-intent-events: Managed by Temporal orchestrator for distributed transaction state.
+3. Local Stateless Compute Cascades (Mixture of Experts) (vLLM on private EKS GPU Nodes)
 	•	Model: Llama-3-70B-Instruct.
 	•	Deployment: Running on private GPU nodes on AWS EKS. Inbound prompts and payloads are routed to the localized model via vLLM container ports.
 	•	Sovereignty Boundary: Meets strict CBUAE data residency guidelines. The local compute engine runs in isolation within our sovereign VPC boundary, completely blocked from the outbound public internet.

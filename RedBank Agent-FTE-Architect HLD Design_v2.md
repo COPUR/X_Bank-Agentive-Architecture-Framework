@@ -7,7 +7,7 @@ Date: June 28, 2026
 Version: 2.0
 
 1. EXECUTIVE SUMMARY & PHILOSOPHY
-This High-Level Design (HLD) specifies the production-ready implementation of the RedBank Agentive-Architecture-Framework (Agent-FTE-Architect). Built on the "Sandwich Pattern" architecture and mapped directly to the Spotify Organizational Model, this framework serves as a secure, sovereign AI Agent Harness wrapping localized AI compute engines.
+This High-Level Design (HLD) specifies the production-ready implementation of the RedBank Agent-Native Architecture Framework (Agent-FTE-Architect). Built on the "Sandwich Pattern" architecture and mapped directly to the Spotify Organizational Model, this framework serves as a secure, sovereign AI Agent Harness wrapping localized AI compute engines.
 
 The codebase implementation is structured under the standard BDAT (Business, Data, Application, Technology) domains and features automated Cost Estimators, Project Planners, and Procedural Approval Gates to govern RedBank's cloud modernization and core banking ledger decompositions.
 
@@ -28,7 +28,7 @@ EKS CPU Agent Nodes
 $552.00
 $6,624.00
 Event Messaging Backbone
-AWS MSK (Managed Streaming for Kafka) - 3-broker kafka.m5.large cluster for transactional SAGA messaging.
+AWS MSK (Managed Streaming for Kafka) - 3-broker kafka.m5.large cluster for transactional Temporal messaging.
 $350.00
 $4,200.00
 Sovereign Database Tier
@@ -46,7 +46,7 @@ $125,040.00
 *Note: Infrastructure costs are optimized using vLLM context caching to prevent runaway model execution costs.*
 
 3. PROJECT PLANNER & COST ESTIMATOR MODULES
-To prevent runaway cloud expenditures during modular legacy core decompositions, our Agentive Harness implements a programmatic Cost Estimator and Project Planner engine at the API Gateway layer:
+To prevent runaway cloud expenditures during modular legacy core decompositions, our Cognitive Orchestration Harness implements a programmatic Cost Estimator and Project Planner engine at the API Gateway layer:
 
 3.1 The Project Planner Engine
 When a product owner proposes an architectural project in Confluence, the Project Planner parses the document structure to automatically decompose the requirements into discrete, machine-readable tasks (REQ-001 through REQ-007). It maps these tasks to standard engineering epics in Jira and schedules them into automated, risk-free sandbox run loops.
@@ -91,7 +91,7 @@ To support automated prompting pipelines and provide complete technical clarity,
 
 	•	Master Design Folder: RedBank EA Framework — Component Breakdown
 	•	V2 Target Folder: v2
-	•	V2 Codebase Folder: RedBank Agentive-Architecture-Framework v2
+	•	V2 Codebase Folder: RedBank Agent-Native Architecture Framework v2
 
 5.1 C4 PlantUML Source Files (V2 Codebase)
 	•	System Context Source: v2_c4_context.puml

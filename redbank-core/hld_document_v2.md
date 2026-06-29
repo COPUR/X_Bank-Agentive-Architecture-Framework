@@ -1,11 +1,11 @@
-High-Level Design (HLD) Document - RedBank Agentive-Architecture-Framework
+High-Level Design (HLD) Document - RedBank Agent-Native Architecture Framework
 Document Identifier: RB-EAF-2026-HLD Classification: RESTRICTED - ENTERPRISE ARCHITECTURE Target Audience: CAB/ARB Board, Solutions Architects, DevSecOps Leads Version: 1.0
 
 
 1. Executive Summary & Core Philosophy
-The RedBank Agentive-Architecture-Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
+The RedBank Agent-Native Architecture Framework (Agent-FTE-Architect) is a production-ready AI-agentive orchestration system. Its objective is to automate the end-to-end (E2E) SDLC architectural design, review, regulatory verification, post-development code reconciliation, and engineering velocity metrics collection under strict regulatory standards (CBUAE Circular 3/2025, PCI-DSS v4, and GDPR).
 1.1 The Harness Engineering Principle: Agent = Model + Harness
-Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Agentive Harness containing our API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
+Autonomous models deployed in banking environments require strict boundaries. The Large Language Model (LLM) serves as a stateless compute engine. To make it secure, it is wrapped in an Cognitive Orchestration Harness containing our API gateways, Kafka event buses, PostgreSQL state storage, and identity management.
 1.2 The LFI-Sandwich Architecture Tiers
 	•	The Upper Layer: Business and product requirements established in Confluence and Jira.
 	•	The Middle Layer: Logical design and low-level specifications aligned with the BIAN framework.
@@ -13,7 +13,7 @@ Autonomous models deployed in banking environments require strict boundaries. Th
 
 
 2. System Context (C4 Level 1)
-The System Context diagram describes how the Agent-FTE-Architect Harness interacts with users (Architects, CISO, SREs) and external enterprise systems.
+The System Context diagram describes how the Cognitive Orchestration Harness interacts with users (Architects, CISO, SREs) and external enterprise systems.
 2.1 Context Diagram
 	•	Source PUML File: c4_context.puml
 	•	Rendered Diagram: diagrams/c4_context.svg
@@ -26,7 +26,7 @@ The System Context diagram describes how the Agent-FTE-Architect Harness interac
 
                                                                       ▼          ▼
 
-[Compliance/CISO] ◄───────────────────────────────────────► [Agent-FTE-Architect Harness]
+[Compliance/CISO] ◄───────────────────────────────────────► [Cognitive Orchestration Harness]
 
                                                                       │
 
@@ -36,7 +36,7 @@ The System Context diagram describes how the Agent-FTE-Architect Harness interac
 
 
 3. Container Architecture (C4 Level 2)
-The Container diagram decomposes the Agent-FTE-Architect Harness into its core container modules, event buses, databases, and localized LLM compute engines.
+The Container diagram decomposes the Cognitive Orchestration Harness into its core container modules, event buses, databases, and localized LLM compute engines.
 3.1 Container Diagram
 	•	Source PUML File: c4_container.puml
 	•	Rendered Diagram: diagrams/c4_container.svg

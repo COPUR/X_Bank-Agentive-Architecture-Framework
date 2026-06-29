@@ -18,7 +18,7 @@ System_Boundary(harness_boundary, "Cognitive Orchestration Harness") {
     Container(temporal_kafka, "Multi-Agent Orchestrator", "Temporal + Kafka (MSK)", "Manages real-time intent-driven workflows and stateful long-running execution.")
     
     Container(semantic_cache, "Semantic Vector Cache", "Redis / Vector Search", "Caches semantic representations of prompts to bypass heavy model inference.")
-    Container(local_llm, "Stateless Compute Engine (Cascades)", "vLLM / SLM + LLaMA", "Mixture of Experts: Fast SLMs for simple tasks, local LLaMA-3-70B for complex reasoning.")
+    Container(local_llm, "Stateless Compute Cascades (Mixture of Experts) (Cascades)", "vLLM / SLM + LLaMA", "Mixture of Experts: Fast SLMs for simple tasks, local LLaMA-3-70B for complex reasoning.")
 }
 
 System_Ext(atlassian, "Atlassian Suite (Jira/Confluence)", "SaaS Enterprise Planning")

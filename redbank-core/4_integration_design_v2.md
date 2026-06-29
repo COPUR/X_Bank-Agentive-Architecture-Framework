@@ -1,4 +1,4 @@
-Part 4: Integration Design - RedBank Agentive-Architecture-Framework
+Part 4: Integration Design - RedBank Agent-Native Architecture Framework
 4.1 BIAN Service Domain Mapping
 	•	Consumer Account Service Domain: Map logical service components to the BIAN Consumer Account schema, exposing GET /api/v1/accounts/{accountId}/balance.
 	•	Card Authorization Service Domain: Map card authorizations to the BIAN Card Authorization schema, exposing POST /api/v1/cards/authorize.

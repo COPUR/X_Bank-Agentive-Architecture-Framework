@@ -1,4 +1,4 @@
-Detailed Level Design (LLD) Document - RedBank Agentive-Architecture-Framework
+Detailed Level Design (LLD) Document - RedBank Agent-Native Architecture Framework
 Document Identifier: RB-EAF-2026-LLD Classification: RESTRICTED - ENTERPRISE ARCHITECTURE Target Audience: Lead Developers, SQA Engineers, SRE Leads Version: 1.0
 
 
@@ -65,8 +65,8 @@ X-Client-Cert-SHA256: <mTLS-cert-hash>
 }
 
 
-2. Distributed Transaction State Machine (SAGA Orchestration)
-To manage transactions between tbl_accounts and tbl_cards databases, a stateful orchestrator manages events on the saga-tx-events topic:
+2. Distributed Transaction State Machine (Temporal Orchestration)
+To manage transactions between tbl_accounts and tbl_cards databases, a stateful orchestrator manages events on the temporal-intent-events topic:
 
 [INITIATED] ──► [FUNDS_RESERVED] ──► [CARD_AUTHORIZED] ──► [COMPLETED]
 
@@ -78,7 +78,7 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
 2.1 Compensating Rollback Event Schema
 {
 
-  "saga_id": "saga-uuid-901234",
+  "saga_id": "temporal-uuid-901234",
 
   "transaction_type": "CARD_RESERVATION_COMPENSATION",
 
@@ -125,7 +125,7 @@ JSON_OUTPUT_FORMAT:
   "scope_metadata": { "environment": "Production", "api_standards": "FAPI2 / mTLS" }
 
 }
-3.2 Prompt 2: DB Topology & SAGA Generator (Agent 2 - Squad Tier)
+3.2 Prompt 2: DB Topology & Temporal Generator (Agent 2 - Squad Tier)
 SYSTEM: Act as the Deep Systems Engineer & Database Administrator (Agent 2) inside RedBank's Enterprise Architecture Harness.
 
 ROLEPLAY_STYLE: Speak with the direct, shared contextual familiarity of an internal Principal Enterprise Architect. Do not use preambles like "Based on your parameters."
@@ -140,7 +140,7 @@ INSTRUCTIONS:
 
 2. Define the AccountEntity and CardEntity tables (strictly tokenize and mask card details, storing SHA-256 tokens instead of PANs).
 
-3. Draft a stateful SAGA Orchestration transaction loop over Apache Kafka to manage balance reservations and card authorizations.
+3. Draft a stateful Temporal Orchestration transaction loop over Apache Kafka to manage balance reservations and card authorizations.
 
 4. Output a highly technical LLD specification drafting precise API routes and PostgreSQL schemas.
 3.3 Prompt 3: Regulatory Compliance Auditor (Agent 3 - Guild Tier)

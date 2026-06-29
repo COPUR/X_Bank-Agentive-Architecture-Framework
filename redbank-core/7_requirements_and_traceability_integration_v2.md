@@ -1,4 +1,4 @@
-Part 7: Requirements and Traceability Integration - RedBank Agentive-Architecture-Framework
+Part 7: Requirements and Traceability Integration - RedBank Agent-Native Architecture Framework
 7.1 Atlassian-Based Requirements Lifecycle (The Upper Sandwich Layer)
 At RedBank, Product Requirements Documents (PRDs) are managed natively in Confluence to establish an agile, highly collaborative planning layer:
 

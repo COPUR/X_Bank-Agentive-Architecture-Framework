@@ -6,8 +6,8 @@ The illusion of the "Magic Cloud" is over. Treating Artificial Intelligence (AI)
 ## 2. The 4 Breaking Points of Traditional Architecture
 
 ### Breaking Point 1: From Software Bottlenecks to Cognitive Orchestration
-* **The Past:** Bottlenecks were software-based and organizational (e.g., Mainframes, monolithic ESBs). We solved this with Domain-Driven Design (DDD) and Kubernetes, breaking systems down into stateless, autonomous microservices with "Bounded Contexts."
-* **The AI Reality:** Bottlenecks are now bound by physics and hardware. The DDD concept of "Bounded Context" must evolve into **"Bounded Specialization" (Role Boundaries)** to define AI agent decision-making limits.
+* **The Past:** Bottlenecks were software-based and organizational (e.g., Mainframes, monolithic ESBs). We solved this with Domain-Driven Design (DDD) and Kubernetes, breaking systems down into stateless, autonomous microservices with "Bounded Specialization (Role Boundaries)."
+* **The AI Reality:** Bottlenecks are now bound by physics and hardware. The DDD concept of "Bounded Specialization (Role Boundaries)" must evolve into **"Bounded Specialization" (Role Boundaries)** to define AI agent decision-making limits.
 * **The Shift:** Kubernetes must transition from running stateless web services to becoming a **"Cognitive Orchestration Layer" (Context Kubernetes)** that manages the memory states, permissions, and inter-communications of autonomous agents.
 
 ### Breaking Point 2: Software Hits the Laws of Physics

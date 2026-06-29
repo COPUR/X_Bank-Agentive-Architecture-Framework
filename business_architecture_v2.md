@@ -1,5 +1,5 @@
 Business Architecture & Scrum Execution - RedBank V2 Directory Mapping
-Within the decoupled Business Architecture of RedBank, the agile planning lifecycle, BIAN domain alignments, and Scrum ceremonies map directly to the codebase components of our redbank-agentive-architecture-framework-v2 structure:
+Within the decoupled Business Architecture of RedBank, the agile planning lifecycle, BIAN domain alignments, and Scrum ceremonies map directly to the codebase components of our redbank-agent-native-architecture-framework-v2 structure:
 1. Requirements Ingestion & Mapping (The Scrum Backlog)
 	•	Confluence Space Templates & PRDs: Handled by app/components/confluence_ingest.py. It calls the Confluence API (via app/agents/tools/doc_connector.py) to fetch XHTML storage formats.
 	•	Blueprint Creator App Metadata: Read by app/agents/agent1_ingestion.py. It parses custom field tables in the PRD, converting structural metadata into a machine-readable JSON schema.

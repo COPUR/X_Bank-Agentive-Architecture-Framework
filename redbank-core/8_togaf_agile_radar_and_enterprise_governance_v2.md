@@ -74,7 +74,7 @@ The Tech Radar is continually updated by Agent 5 and is structured around four e
 
      ┌──────────────┐             ┌──────────────┐
 
-     │ - gVisor K8s │             │ - Static SAGA│
+     │ - gVisor K8s │             │ - Static Temporal│
 
      │ - DPoP TLS   │             │   Workflows  │
 
@@ -109,7 +109,7 @@ The Tech Radar is continually updated by Agent 5 and is structured around four e
 	•	ADOPT: Standard technologies approved for broad production use: Temporal Workflows, SPIFFE ID for Zero Trust, Vector DBs (pgvector), Fast SLMs for simple tasks.
 	•	TRIAL: Deployed in production-ready sandbox and pilot projects: Security LLM Gateway (Streaming DLP), WASM sandboxing for Agents, Semantic Vector Caching.
 	•	ASSESS: Technologies undergoing Proof of Technology (PoT) evaluations: gVisor K8s runtimes, Braintrust AI Tracing, DPoP token-bindings.
-	•	HOLD: Deprecated technologies or practices slated for active decommissioning: Static SAGA workflows over raw Kafka, plaintext/unencrypted logging.
+	•	HOLD: Deprecated technologies or practices slated for active decommissioning: Static Temporal workflows over raw Kafka, plaintext/unencrypted logging.
 
 
 8.4 Debt Management & Strategic Decision Helper

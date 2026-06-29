@@ -3,7 +3,7 @@ The Strategy & Governance domain governs our strategic roadmap, Architectural De
 1. Strategic Architectural Decision Records (ADRs)
 	•	Implementation Code: docs/architecture_codex.md & app/prompts/templates.py
 	•	Mechanism:
-	•	docs/architecture_codex.md documents our active ADRs (ADR-001: Localized AI, ADR-002: SAGA Orchestration, ADR-003: FAPI2, ADR-004: Zero-Trust Log Sanitization).
+	•	docs/architecture_codex.md documents our active ADRs (ADR-001: Localized AI, ADR-002: Temporal Orchestration, ADR-003: FAPI2, ADR-004: Zero-Trust Log Sanitization).
 	•	app/prompts/templates.py embeds these ADR boundaries directly into the system prompting parameters of our five agents, ensuring that all generated low-level code or designs automatically comply with our strategic decisions.
 2. RedBank Enterprise Tech Radar
 	•	Implementation Code: app/agents/agent5_dora.py
