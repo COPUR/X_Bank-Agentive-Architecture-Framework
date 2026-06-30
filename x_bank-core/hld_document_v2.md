@@ -30,7 +30,7 @@ The System Context diagram describes how the Cognitive Orchestration Harness int
 	•	Source PUML File: c4_context.puml
 	•	Rendered Diagram: diagrams/c4_context.svg
 
-![C4 Context Diagram](c4_context_v2.svg)
+![C4 Context Diagram](c4_context.svg)
 
 [Enterprise Architect] ────► [Confluence (Approved PRDs)] ────► [Jira Backlog] ───► [Jama Traceability]
 
@@ -55,7 +55,7 @@ The Container diagram decomposes the Cognitive Orchestration Harness into its co
 	•	Source PUML File: c4_container.puml
 	•	Rendered Diagram: diagrams/c4_container.svg
 
-![C4 Container Diagram](c4_container_v2.svg)
+![C4 Container Diagram](c4_container.svg)
 3.2 Containers Description
 	•	Agent Harness Core (Managed Harness): A generic orchestration runtime (`AgentHarness.java`) that drives autonomous execution via dynamic sequencing.
 	•	Memory & Configuration Management: Cross-session `PersistentMemoryManager` and API-level `ConfigurationManager` to hot-swap logic.
@@ -70,7 +70,7 @@ The Component diagram models the internal Spring Boot and pgvector components of
 4.1 Component Diagram
 	•	Source PUML File: c4_component.puml
 
-![C4 Component Diagram](c4_component_v2.svg)
+![C4 Component Diagram](c4_component.svg)
 
 	•	Rendered Diagram: diagrams/c4_component.svg
 4.2 Component Descriptions
@@ -122,6 +122,6 @@ CREATE TABLE tbl_cards (
 
 6. Dynamic Ralph Workflow Sequence
 The system orchestrates intent via the Temporal worker pattern, adhering to the Ralph Architecture's iterative loop with isolated state. 
-*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/RedBank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
+*For the exhaustive step-by-step API call trace, please refer to the [Temporal Workflow Sequence Diagram](sequence_temporal_workflow_v2.puml).*
 
 ![Sequence Diagram](sequence_temporal_workflow_v2.svg)

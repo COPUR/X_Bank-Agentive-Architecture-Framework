@@ -72,7 +72,7 @@ The multi-agent orchestrator operates as a stateful, long-running workflow syste
 
    └────────────────────────────────────────────────────────────┘
 
-*For a detailed programmatic view of this multi-agent state execution, please refer to the mandatory [Temporal Workflow Sequence Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/sequence_temporal_workflow_v2.puml).*
+*For a detailed programmatic view of this multi-agent state execution, please refer to the mandatory [Temporal Workflow Sequence Diagram](sequence_temporal_workflow_v2.puml).*
 
 ![Sequence Diagram](sequence_temporal_workflow_v2.svg)
 

@@ -100,7 +100,7 @@ To manage transactions between tbl_accounts and tbl_cards databases, a stateful 
 
 2.2 Cognitive Circuit Breaker (Agent 3 State Machine)
 To ensure system stability, Agent 3 implements a strict deterministic fallback mechanism if the primary Model Cascades fail or timeout.
-*For a detailed programmatic view of this fallback logic, please refer to the mandatory [State Machine Diagram](file:///Users/alicopur/Downloads/X_Bank%20Agentive-Architecture-Framework%20v2/x_bank-core/state_deterministic_fallback_v2.puml).*
+*For a detailed programmatic view of this fallback logic, please refer to the mandatory [State Machine Diagram](state_deterministic_fallback_v2.puml).*
 
 ![State Diagram](state_deterministic_fallback_v2.svg)
 
